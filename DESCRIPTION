@@ -8,13 +8,14 @@ Description: This package makes it easy for teachers to test students'
     \url{www.DataCamp.com}.
 URL: www.DataCamp.com
 Depends:
-    R (>= 3.0.0)
+    R (>= 3.0.2)
 Imports:
     markdown,
     R6,
     stringdist,
     magrittr,
-    praise
+    praise,
+    roxygen2
 Suggests:
     knitr,
     rmarkdown,
