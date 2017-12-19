@@ -81,3 +81,72 @@ extract_r_code_from_rcpp <- function(code_lines, flatten = TRUE) {
   }
   r_chunks
 }
+
+
+# roxy --------------------------------------------------------------------
+
+#' Extract roxygen details from a file
+#' 
+#' Parses an R file and extracts the roxygen tags. Mostly just a wrapper
+#' around \code{roxygen2:::parse_blocks}.
+#' @param file A string denoting a path to an R file. 
+#' @return A list of lists. Each top level element corresponds to a roxygen 
+#' block. Each second level element corresponds to a roxygen tag within that 
+#' block.
+#' @importFrom roxygen2 roclet_tags roclet_find tag_value
+extract_roxygen_from_code <- function(lines) {
+  # roxygen2:::parse_blocks depends very heavily on the
+  # code being in a file
+  tfile <- tempfile(fileext = ".R")
+  writeLines(lines, tfile)
+  # registry setup inferred from body of roxygenize()
+  registry <- c(
+    roclet_tags(roclet_find("rd")), 
+    roclet_tags(roclet_find("namespace")), 
+    include = tag_value
+  )
+  # Parse the file
+  roxy <- roxygen2:::parse_blocks(tfile, new.env(), registry)
+  # Unclass to fix the print method
+  roxy <- lapply(
+    roxy, 
+    function(x) {
+      # This object doesn't print properly
+      if(!is.null(x$object)) {
+        x$object <- unclass(x$object)
+      }
+      x
+    }
+  )
+  # For convenience, it's nice to have elements named after
+  # the function that they are describing
+  names(roxy) <- vapply(
+    roxy,
+    function(x) {
+      if(!is.null(x$object$alias)) {
+        x$object$alias
+      } else {
+        ""
+      }
+    },
+    character(1L)
+  )
+  roxy
+}
+
+#' Parse roxygen2 comments 
+#' 
+#' Parses roxygen2 comments and updates the state.
+#' @param state An exercise state, as returned by \code{ex()}.
+#' @return A child state.
+#' @details The function extracts the roxygen2 comments from the state then 
+#' parses them.
+#' @export
+parse_roxy <- function(state) {
+  childState <- ChildState$new(state)
+  childState$set(
+    student_pd = extract_roxygen_from_file(childState$get("student_code")),
+    solution_pd = extract_roxygen_from_file(childState$get("solution_code"))
+  )
+  childState
+}
