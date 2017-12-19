@@ -3,12 +3,20 @@
 \name{check_has_roxy}
 \alias{check_has_roxy}
 \alias{check_has_roxy_element}
+\alias{check_roxy_element_equals}
+\alias{check_roxy_element_matches}
 \title{Check the roxygen comments}
 \usage{
 check_has_roxy(state, index = 1L, missing_msg = NULL, append = TRUE)
 
 check_has_roxy_element(state, element, index = 1L, missing_msg = NULL,
   append = TRUE)
+
+check_roxy_element_equals(state, element, index = 1L, incorrect_msg = NULL,
+  append = TRUE)
+
+check_roxy_element_matches(state, element, regex, fixed = FALSE, times = 1,
+  index = 1L, not_typed_msg = NULL, append = TRUE)
 }
 \arguments{
 \item{state}{The state of the exercise, as returned from \code{\link{parse_roxy}}.}

@@ -75,6 +75,8 @@ check_has_roxy_element <- function(state, element, index = 1L, missing_msg = NUL
   )
 }
 
+#' @rdname check_has_roxy
+#' @export
 check_roxy_element_equals <- function(state, element, index = 1L, incorrect_msg = NULL, append = TRUE) {
   check_has_roxy_element(state, element, index)
   
@@ -93,6 +95,8 @@ check_roxy_element_equals <- function(state, element, index = 1L, incorrect_msg 
   )
 }
 
+#' @rdname check_has_roxy
+#' @export
 check_roxy_element_matches <- function(state, element, regex, fixed = FALSE, times = 1, index = 1L, not_typed_msg = NULL, append = TRUE) {
   check_has_roxy_element(state, element, index)
   
