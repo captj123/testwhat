@@ -5,6 +5,12 @@
 #' @param element String naming the element of the roxygen block to check. 
 #' @param index A positive integer or a string naming a function. This describes 
 #' which roxygen element in the code to check.
+#' @param regex String providing a regular expression for the solution code to 
+#' match. See \code{\link{check_code}}.
+#' @param fixed Logical. If \code{TRUE}, regex is treated as a fixed string, not
+#' a regular expression. See \code{\link{check_code}}.
+#' @param times Positive integer. Denotes the number of times the string in 
+#' \code{regex} should be matched.
 #' @param missing_msg Optional string. Used to override the feedback message
 #' in the event of failure.
 #' @param incorrect_msg Optional string. Used to override the feedback message

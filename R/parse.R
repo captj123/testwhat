@@ -89,11 +89,12 @@ extract_r_code_from_rcpp <- function(code_lines, flatten = TRUE) {
 #' 
 #' Parses an R file and extracts the roxygen tags. Mostly just a wrapper
 #' around \code{roxygen2:::parse_blocks}.
-#' @param file A string denoting a path to an R file. 
+#' @param lines A character vector of code lines. 
 #' @return A list of lists. Each top level element corresponds to a roxygen 
 #' block. Each second level element corresponds to a roxygen tag within that 
 #' block.
 #' @importFrom roxygen2 roclet_tags roclet_find tag_value
+#' @noRd
 extract_roxygen_from_code <- function(lines) {
   # roxygen2:::parse_blocks depends very heavily on the
   # code being in a file
@@ -145,8 +146,8 @@ extract_roxygen_from_code <- function(lines) {
 parse_roxy <- function(state) {
   childState <- ChildState$new(state)
   childState$set(
-    student_pd = extract_roxygen_from_file(childState$get("student_code")),
-    solution_pd = extract_roxygen_from_file(childState$get("solution_code"))
+    student_pd = extract_roxygen_from_code(childState$get("student_code")),
+    solution_pd = extract_roxygen_from_code(childState$get("solution_code"))
   )
   childState
 }

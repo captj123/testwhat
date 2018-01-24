@@ -34,6 +34,15 @@ in the event of failure.}
 \item{incorrect_msg}{Optional string. Used to override the feedback message
 in the event of failure.}
 
+\item{regex}{String providing a regular expression for the solution code to 
+match. See \code{\link{check_code}}.}
+
+\item{fixed}{Logical. If \code{TRUE}, regex is treated as a fixed string, not
+a regular expression. See \code{\link{check_code}}.}
+
+\item{times}{Positive integer. Denotes the number of times the string in 
+\code{regex} should be matched.}
+
 \item{not_typed_msg}{Optional string. Used to override the feedback message
 in the event of failure.
 incorrect_msg}
