@@ -77,7 +77,7 @@ check_has_roxy_element <- function(state, element, index = 1L, missing_msg = NUL
   }
   check_that(
     is_false(is.null(student_pd[[index]][[element]])),
-    feedback = 
+    feedback = missing_msg
   )
 }
 
@@ -97,7 +97,7 @@ check_roxy_element_equals <- function(state, element, index = 1L, incorrect_msg 
   }
   check_that(
     is_equal(student_pd[[index]][[element]], solution_pd[[index]][[element]]),
-    feedback = 
+    feedback = incorrect_msg
   )
 }
 

@@ -17,7 +17,6 @@ geomean <- function(x, na.rm = FALSE) {
 
 context("check_has_roxy")
 
-
 test_that(
  "test check_has_roxy() passes on a function with roxygen code", {
    lst <- list()
@@ -37,3 +36,39 @@ test_that(
     fails(output)
   }
 )
+
+# check_has_roxy_element --------------------------------------------------
+
+context("check_has_roxy_element")
+
+test_that(
+  "test check_has_roxy_element() passes on a function with that roxygen element", {
+    lst <- list()
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_has_roxy_element('title')"
+    lst$DC_CODE <- FN_WITH_ROXY
+    output <- test_it(lst)
+    passes(output)
+  }
+)
+
+test_that(
+  "test check_has_roxy_element() fails on a function without roxygen code", {
+    lst <- list()
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_has_roxy_element('title')"
+    lst$DC_CODE <- FN_WITHOUT_ROXY
+    output <- test_it(lst)
+    fails(output)
+  }
+)
+
+test_that(
+  "test check_has_roxy_element() fails on a function without that roxygen element", {
+    lst <- list()
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_has_roxy_element('qwerty')"
+    lst$DC_CODE <- FN_WITH_ROXY
+    output <- test_it(lst)
+    fails(output)
+  }
+)
+
+
