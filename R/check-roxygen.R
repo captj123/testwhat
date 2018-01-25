@@ -56,10 +56,8 @@ check_has_roxy <- function(state, index = 1L, missing_msg = NULL, append = TRUE)
       feedback = missing_msg
     )
   }
-  check_that(
-    is_false(is.null(student_pd[[index]])),
-    feedback = missing_msg
-  )
+  actual <- is.null(student_pd[[index]])
+  check_that(is_false(actual), feedback = missing_msg)
 }
 
 #' @rdname check_has_roxy
@@ -75,10 +73,8 @@ check_has_roxy_element <- function(state, element, index = 1L, missing_msg = NUL
       element, index
     )
   }
-  check_that(
-    is_false(is.null(student_pd[[index]][[element]])),
-    feedback = missing_msg
-  )
+  actual <- is.null(student_pd[[index]][[element]])
+  check_that(is_false(actual), feedback = missing_msg)
 }
 
 #' @rdname check_has_roxy
@@ -89,19 +85,17 @@ check_roxy_element_equals <- function(state, element, index = 1L, incorrect_msg 
   student_pd <- state$get("student_pd")
   solution_pd <- state$get("solution_pd")
   
+  if(is.null(incorrect_msg)) {
+    incorrect_msg <- sprintf(
+      "The '%s' element of roxygen block '%s' is not correct.", 
+      element, index
+    )
+  }
+  
   actual <- student_pd[[index]][[element]]
   expected <- solution_pd[[index]][[element]]
   
-  if(is.null(incorrect_msg)) {
-    incorrect_msg <- sprintf(
-      "The '%s' element of roxygen block '%s' is not correct.\nactual = %s\nexpected = %s", 
-      element, index, deparse(actual), deparse(expected)
-    )
-  }
-  check_that(
-    is_equal(actual, expected),
-    feedback = incorrect_msg
-  )
+  check_that(is_equal(actual, expected), feedback = incorrect_msg)
 }
 
 #' @rdname check_has_roxy
@@ -110,7 +104,6 @@ check_roxy_element_matches <- function(state, element, regex, fixed = FALSE, tim
   check_has_roxy_element(state, element, index)
   
   student_pd <- state$get("student_pd")
-  solution_pd <- state$get("solution_pd")
   
   if(is.null(not_typed_msg)) {
     not_typed_msg <- sprintf(
@@ -118,14 +111,8 @@ check_roxy_element_matches <- function(state, element, regex, fixed = FALSE, tim
       element, index, regex
     )
   }
-  num_hits <- get_num_hits(
-    regex = regex, 
-    x = student_pd[[index]][[element]], 
-    fixed = fixed
-  )
-  check_that(
-    is_gte(num_hits, times), 
-    feedback = not_typed_msg
-  )
+  actual <- student_pd[[index]][[element]]
+  num_hits <- get_num_hits(regex = regex, x = actual, fixed = fixed)
+  check_that(is_gte(num_hits, times), feedback = not_typed_msg)
 }
 

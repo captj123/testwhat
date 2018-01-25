@@ -34,7 +34,7 @@ context("check_has_roxy")
 test_that(
  "test check_has_roxy() passes on a function with roxygen code", {
    lst <- list()
-   lst$DC_SOLUTION <- FN_WITH_ROXY
+   # Solution code not considered
    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_has_roxy()"
    lst$DC_CODE <- FN_WITH_ROXY
    output <- test_it(lst)
@@ -45,7 +45,7 @@ test_that(
 test_that(
   "test check_has_roxy() fails on a function without roxygen code", {
     lst <- list()
-    lst$DC_SOLUTION <- FN_WITH_ROXY
+    # Solution code not considered
     lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_has_roxy()"
     lst$DC_CODE <- FN_WITHOUT_ROXY
     output <- test_it(lst)
@@ -60,7 +60,7 @@ context("check_has_roxy_element")
 test_that(
   "test check_has_roxy_element() passes on a function with that roxygen element", {
     lst <- list()
-    lst$DC_SOLUTION <- FN_WITH_ROXY
+    # Solution code not considered
     lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_has_roxy_element('title')"
     lst$DC_CODE <- FN_WITH_ROXY
     output <- test_it(lst)
@@ -71,7 +71,7 @@ test_that(
 test_that(
   "test check_has_roxy_element() fails on a function without roxygen code", {
     lst <- list()
-    lst$DC_SOLUTION <- FN_WITH_ROXY
+    # Solution code not considered
     lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_has_roxy_element('title')"
     lst$DC_CODE <- FN_WITHOUT_ROXY
     output <- test_it(lst)
@@ -82,7 +82,7 @@ test_that(
 test_that(
   "test check_has_roxy_element() fails on a function without that roxygen element", {
     lst <- list()
-    lst$DC_SOLUTION <- FN_WITH_ROXY
+    # Solution code not considered
     lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_has_roxy_element('qwerty')"
     lst$DC_CODE <- FN_WITH_ROXY
     output <- test_it(lst)
@@ -126,5 +126,54 @@ test_that(
     fails(output)
   }
 )
+
+# check_roxy_element_matches ----------------------------------------------
+
+context("check_roxy_element_matches")
+
+test_that(
+  "test check_roxy_element_matches() passes on a function with a regex-matching roxygen element", {
+    lst <- list()
+    # Solution code not considered
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_roxy_element_matches('examples', 'geomean\\\\(.*\\\\)')"
+    lst$DC_CODE <- FN_WITH_ROXY
+    output <- test_it(lst)
+    passes(output)
+  }
+)
+
+test_that(
+  "test check_roxy_element_matches() passes on a function with a fixed-matching roxygen element", {
+    lst <- list()
+    # Solution code not considered
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_roxy_element_matches('description', 'geometric mean', fixed = TRUE)"
+    lst$DC_CODE <- FN_WITH_ROXY
+    output <- test_it(lst)
+    passes(output)
+  }
+)
+
+test_that(
+  "test check_roxy_element_matches() fails on a function without roxygen code", {
+    lst <- list()
+    # Solution code not considered
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_roxy_element_matches('title')"
+    lst$DC_CODE <- FN_WITHOUT_ROXY
+    output <- test_it(lst)
+    fails(output)
+  }
+)
+
+test_that(
+  "test check_roxy_element_matches() fails on a function with a mismatched roxygen element", {
+    lst <- list()
+    # Solution code not considered
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_roxy_element_matches('description', 'arithmetic mean', fixed = TRUE)"
+    lst$DC_CODE <- FN_WITH_ROXY
+    output <- test_it(lst)
+    fails(output)
+  }
+)
+
 
 
