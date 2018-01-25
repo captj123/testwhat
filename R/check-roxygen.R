@@ -89,14 +89,17 @@ check_roxy_element_equals <- function(state, element, index = 1L, incorrect_msg 
   student_pd <- state$get("student_pd")
   solution_pd <- state$get("solution_pd")
   
+  actual <- student_pd[[index]][[element]]
+  expected <- solution_pd[[index]][[element]]
+  
   if(is.null(incorrect_msg)) {
     incorrect_msg <- sprintf(
-      "The '%s' element of roxygen block '%s' is not correct.", 
-      element, index
+      "The '%s' element of roxygen block '%s' is not correct.\nactual = %s\nexpected = %s", 
+      element, index, deparse(actual), deparse(expected)
     )
   }
   check_that(
-    is_equal(student_pd[[index]][[element]], solution_pd[[index]][[element]]),
+    is_equal(actual, expected),
     feedback = incorrect_msg
   )
 }
