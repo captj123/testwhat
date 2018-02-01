@@ -175,5 +175,43 @@ test_that(
   }
 )
 
+# check_has_roxy_param ----------------------------------------------------
+
+context("check_has_roxy_param")
+
+test_that(
+  "test check_has_roxy_param() passes on a function with that roxygen param", {
+    lst <- list()
+    # Solution code not considered
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_has_roxy_param('na.rm')"
+    lst$DC_CODE <- FN_WITH_ROXY
+    output <- test_it(lst)
+    passes(output)
+  }
+)
+
+test_that(
+  "test check_has_roxy_param() fails on a function without roxygen code", {
+    lst <- list()
+    # Solution code not considered
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_has_roxy_param('na.rm')"
+    lst$DC_CODE <- FN_WITHOUT_ROXY
+    output <- test_it(lst)
+    fails(output)
+  }
+)
+
+test_that(
+  "test check_has_roxy_param() fails on a function without that roxygen param", {
+    lst <- list()
+    # Solution code not considered
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_has_roxy_param('y')"
+    lst$DC_CODE <- FN_WITH_ROXY
+    output <- test_it(lst)
+    fails(output)
+  }
+)
+
+
 
 

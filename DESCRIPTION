@@ -15,7 +15,8 @@ Imports:
     stringdist,
     magrittr,
     praise,
-    roxygen2
+    roxygen2,
+    stats
 Suggests:
     knitr,
     rmarkdown,

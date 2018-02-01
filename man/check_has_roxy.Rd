@@ -5,6 +5,7 @@
 \alias{check_has_roxy_element}
 \alias{check_roxy_element_equals}
 \alias{check_roxy_element_matches}
+\alias{check_has_roxy_param}
 \title{Check the roxygen comments}
 \usage{
 check_has_roxy(state, index = 1L, missing_msg = NULL, append = TRUE)
@@ -15,8 +16,11 @@ check_has_roxy_element(state, element, index = 1L, missing_msg = NULL,
 check_roxy_element_equals(state, element, index = 1L, incorrect_msg = NULL,
   append = TRUE)
 
-check_roxy_element_matches(state, element, regex, fixed = FALSE, times = 1,
+check_roxy_element_matches(state, element, regex, fixed = FALSE, times = 1L,
   index = 1L, not_typed_msg = NULL, append = TRUE)
+
+check_has_roxy_param(state, param_name, index = 1L, missing_msg = NULL,
+  append = TRUE)
 }
 \arguments{
 \item{state}{The state of the exercise, as returned from \code{\link{parse_roxy}}.}
@@ -46,6 +50,8 @@ a regular expression. See \code{\link{check_code}}.}
 \item{not_typed_msg}{Optional string. Used to override the feedback message
 in the event of failure.
 incorrect_msg}
+
+\item{param_name}{String naming a parameter for the function.}
 }
 \value{
 This function is invoked for the side effect of registering feedback 

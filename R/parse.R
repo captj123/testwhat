@@ -94,6 +94,7 @@ extract_r_code_from_rcpp <- function(code_lines, flatten = TRUE) {
 #' block. Each second level element corresponds to a roxygen tag within that 
 #' block.
 #' @importFrom roxygen2 roclet_tags roclet_find tag_value
+#' @importFrom stats setNames
 #' @noRd
 extract_roxygen_from_code <- function(lines) {
   # roxygen2:::parse_blocks depends very heavily on the
@@ -108,7 +109,7 @@ extract_roxygen_from_code <- function(lines) {
   )
   # Parse the file
   roxy <- roxygen2:::parse_blocks(tfile, new.env(), registry)
-  # Unclass to fix the print method
+  # Unclass object to fix the print method
   roxy <- lapply(
     roxy, 
     function(x) {
@@ -116,6 +117,26 @@ extract_roxygen_from_code <- function(lines) {
       if(!is.null(x$object)) {
         x$object <- unclass(x$object)
       }
+      x
+    }
+  )
+  # Flatten the param element for easier manipulation later
+  roxy <- lapply(
+    roxy,
+    function(x) {
+      params <- x[names(x) == "param"]
+      if(length(params) == 0L) return(x)
+      x$param <- lapply(
+        params, 
+        function(paramsi) paramsi$description
+      ) %>% 
+        setNames(
+          vapply(
+            params, 
+            function(paramsi) paramsi$name, 
+            character(1)
+          )
+        )
       x
     }
   )

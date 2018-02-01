@@ -11,6 +11,7 @@
 #' a regular expression. See \code{\link{check_code}}.
 #' @param times Positive integer. Denotes the number of times the string in 
 #' \code{regex} should be matched.
+#' @param param_name String naming a parameter for the function.
 #' @param missing_msg Optional string. Used to override the feedback message
 #' in the event of failure.
 #' @param incorrect_msg Optional string. Used to override the feedback message
@@ -42,9 +43,6 @@
 #' }
 #' @export
 check_has_roxy <- function(state, index = 1L, missing_msg = NULL, append = TRUE) {
-  # child_state <- ChildState$new(state)
-  # child_state$add_details(type = "has_roxy", index = index, append = append)
-  
   student_pd <- state$get("student_pd")
   
   if(is.null(missing_msg)) {
@@ -100,7 +98,7 @@ check_roxy_element_equals <- function(state, element, index = 1L, incorrect_msg 
 
 #' @rdname check_has_roxy
 #' @export
-check_roxy_element_matches <- function(state, element, regex, fixed = FALSE, times = 1, index = 1L, not_typed_msg = NULL, append = TRUE) {
+check_roxy_element_matches <- function(state, element, regex, fixed = FALSE, times = 1L, index = 1L, not_typed_msg = NULL, append = TRUE) {
   check_has_roxy_element(state, element, index)
   
   student_pd <- state$get("student_pd")
@@ -116,3 +114,21 @@ check_roxy_element_matches <- function(state, element, regex, fixed = FALSE, tim
   check_that(is_gte(num_hits, times), feedback = not_typed_msg)
 }
 
+#' @rdname check_has_roxy
+#' @export
+check_has_roxy_param <- function(state, param_name, index = 1L, missing_msg = NULL, append = TRUE) {
+  check_has_roxy_element(state, "param", index) 
+  
+  student_pd <- state$get("student_pd")
+  
+  if(is.null(missing_msg)) {
+    missing_msg <- sprintf(
+      "The '%s' param of roxygen block '%s' is `NULL` or not present.", 
+      param_name, index
+    )
+  }
+  actual <- is.null(student_pd[[index]][["param"]][[param_name]])
+  check_that(is_false(actual), feedback = missing_msg)
+}
+
+# state, param_name, param_desc_regex, fixed = FALSE, index = 1L, , not_typed_msg = NULL, append = TRUE) {
