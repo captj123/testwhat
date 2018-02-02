@@ -18,6 +18,8 @@
 #' in the event of failure.
 #' @param not_typed_msg Optional string. Used to override the feedback message
 #' in the event of failure.
+#' @param not_runnable_msg Optional string. Used to override the feedback message
+#' in the event of failure.
 #' incorrect_msg
 #' @param append For compatibility; currently unused.
 #' @return This function is invoked for the side effect of registering feedback 

@@ -83,7 +83,7 @@ extract_r_code_from_rcpp <- function(code_lines, flatten = TRUE) {
 }
 
 
-# roxy --------------------------------------------------------------------
+# roxygen2 ----------------------------------------------------------------
 
 #' Extract roxygen details from a file
 #' 
@@ -172,3 +172,62 @@ parse_roxy <- function(state) {
   )
   childState
 }
+
+# DESCRIPTION -------------------------------------------------------------
+
+#' Extract DESCRIPTION details from a character vector
+#' 
+#' Parses a package DESCRIPTION file and extracts the tags. Mostly just a
+#' wrapper around \code{\link[base]{read.dcf}}.
+#' @param lines A character vector of lines of a DESCRIPTION file.
+#' @return A list of DESCRIPTION fields. They are all character vectors, 
+#' except 
+#' \itemize{
+#' \item{Version, which is a \code{numeric_version} object.}
+#' \item{Date, which is a \code{Date} object.}
+#' \item{`Authors@R`, which is an \code{person} object.}
+#' }
+#' @examples 
+#' # Base package
+#' desc_lines <- readLines(system.file("DESCRIPTION"))
+#' read_dcf(desc_lines)
+#' 
+#' # This package
+#' desc_lines <- readLines(system.file("DESCRIPTION", package = "testwhat"))
+#' read_dcf(desc_lines)
+#' @noRd
+extract_description_from_code <- function(lines) {
+  tc <- textConnection(lines)
+  on.exit(close(tc))
+  dcf <- read.dcf(tc)
+  desc <- setNames(as.list(dcf), colnames(dcf))
+  desc$Version <- if(!is.null(desc$Version)) {
+    as.numeric_version(desc$Version)
+  }
+  desc$Date <- if(!is.null(desc$Date)) {
+    as.Date(desc$Date)
+  }
+  desc$`Authors@R` <- if(!is.null(desc$`Authors@R`)) {
+    eval(parse(text = desc$`Authors@R`))
+  }
+  desc
+}
+
+#' Parse DESCRIPTION
+#' 
+#' Parses a package DESCRIPTION file and updates the state.
+#' @param state An exercise state, as returned by \code{ex()}.
+#' @return A child state.
+#' @details The function extracts the DESCRIPTION fields from the state then 
+#' parses them.
+#' @export
+parse_desc <- function(state) {
+  childState <- ChildState$new(state)
+  childState$set(
+    student_pd = extract_description_from_code(childState$get("student_code")),
+    solution_pd = extract_description_from_code(childState$get("solution_code"))
+  )
+  childState  
+}
+
+

@@ -64,10 +64,13 @@ a regular expression. See \code{\link{check_code}}.}
 \code{regex} should be matched.}
 
 \item{not_typed_msg}{Optional string. Used to override the feedback message
-in the event of failure.
-incorrect_msg}
+in the event of failure.}
 
 \item{param_name}{String naming a parameter for the function.}
+
+\item{not_runnable_msg}{Optional string. Used to override the feedback message
+in the event of failure.
+incorrect_msg}
 }
 \value{
 This function is invoked for the side effect of registering feedback 
