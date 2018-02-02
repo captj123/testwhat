@@ -8,6 +8,7 @@
 \alias{check_has_roxy_param}
 \alias{check_roxy_param_matches}
 \alias{check_roxy_examples_run}
+\alias{check_roxy_examples_result_equals}
 \title{Check the roxygen comments}
 \usage{
 check_has_roxy(state, index = 1L, missing_msg = NULL, append = TRUE)
@@ -28,6 +29,9 @@ check_roxy_param_matches(state, param_name, regex, fixed = FALSE,
   index = 1L, not_typed_msg = NULL, append = TRUE)
 
 check_roxy_examples_run(state, index = 1L, not_runnable_msg = NULL,
+  append = TRUE)
+
+check_roxy_examples_result_equals(state, index = 1L, incorrect_msg = NULL,
   append = TRUE)
 }
 \arguments{

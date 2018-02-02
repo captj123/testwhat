@@ -169,3 +169,26 @@ check_roxy_examples_run <- function(state, index = 1L, not_runnable_msg = NULL, 
   )
   check_that(is_true(is_runnable), feedback = not_runnable_msg)
 }
+
+#' @rdname check_has_roxy
+#' @export
+check_roxy_examples_result_equals <- function(state, index = 1L, incorrect_msg = NULL, append = TRUE) {
+  check_roxy_examples_run(state, index)
+  
+  student_pd <- state$get("student_pd")
+  solution_pd <- state$get("solution_pd")
+  
+  if(is.null(incorrect_msg)) {
+    incorrect_msg <- sprintf(
+      "The result of running examples in roxygen block '%s' is not correct.", 
+      index
+    )
+  }
+  
+  set.seed(19790801)
+  actual <- eval(parse(text = student_pd[[index]][["examples"]]))
+  set.seed(19790801)
+  expected <- eval(parse(text = solution_pd[[index]][["examples"]]))
+  
+  check_that(is_equal(actual, expected), feedback = incorrect_msg)
+}

@@ -10,7 +10,6 @@ FN_WITH_ROXY <- "#' Geometric mean
 #' @return The geometric mean of \\code{x}.
 #' @examples 
 #' geomean(rlnorm(100, log(5), 0.1)) # more or less 5
-#' geomean(rlnorm(100, log(10), 0.1)) # more or less 10
 #' @export
 geomean <- function(x, na.rm = FALSE) {
   exp(mean(log(x), na.rm = na.rm))
@@ -293,7 +292,7 @@ test_that(
     lst <- list()
     # Solution code not considered
     lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_roxy_examples_run()"
-    lst$DC_CODE <- ANOTHER_FN_WITH_ROXY
+    lst$DC_CODE <- YET_ANOTHER_FN_WITH_ROXY
     output <- test_it(lst)
     fails(output)
   }
@@ -309,6 +308,33 @@ test_that(
     fails(output)
   }
 )
+
+# check_roxy_examples_result_equals ---------------------------------------
+
+context("check_roxy_examples_result_equals")
+
+test_that(
+  "test check_roxy_examples_result_equals() passes on a function with a correct roxygen element", {
+    lst <- list()
+    lst$DC_SOLUTION <- FN_WITH_ROXY
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_roxy_examples_result_equals()"
+    lst$DC_CODE <- FN_WITH_ROXY
+    output <- test_it(lst)
+    passes(output)
+  }
+)
+
+test_that(
+  "test check_roxy_examples_result_equals() fails on a function with an incorrect roxygen element", {
+    lst <- list()
+    lst$DC_SOLUTION <- FN_WITH_ROXY
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_roxy_examples_result_equals()"
+    lst$DC_CODE <- sub("log(5)", "log(10)", FN_WITH_ROXY, fixed = TRUE)
+    output <- test_it(lst)
+    fails(output)
+  }
+)
+
 
 
 
