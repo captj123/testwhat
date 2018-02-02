@@ -120,7 +120,7 @@ test_that(
   "test check_roxy_element_equals() fails on a function with an incorrect roxygen element", {
     lst <- list()
     lst$DC_SOLUTION <- FN_WITH_ROXY
-    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_roxy_element_equals('title')"
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_roxy_element_equals('title', 'mean')"
     lst$DC_CODE <- ANOTHER_FN_WITH_ROXY
     output <- test_it(lst)
     fails(output)
@@ -211,6 +211,55 @@ test_that(
     fails(output)
   }
 )
+
+# check_roxy_param_matches ------------------------------------------------
+
+context("check_roxy_param_matches")
+
+test_that(
+  "test check_has_roxy_param() passes on a function with that roxygen param", {
+    lst <- list()
+    # Solution code not considered
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_roxy_param_matches('na.rm', '[lL]ogical.*remove missing')"
+    lst$DC_CODE <- FN_WITH_ROXY
+    output <- test_it(lst)
+    passes(output)
+  }
+)
+
+test_that(
+  "test check_roxy_param_matches() passes on a function with a fixed-matching roxygen param", {
+    lst <- list()
+    # Solution code not considered
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_roxy_param_matches('na.rm', 'remove missing values', fixed = TRUE)"
+    lst$DC_CODE <- FN_WITH_ROXY
+    output <- test_it(lst)
+    passes(output)
+  }
+)
+
+test_that(
+  "test check_roxy_param_matches() fails on a function without roxygen code", {
+    lst <- list()
+    # Solution code not considered
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_roxy_param_matches('x', 'numeric vector')"
+    lst$DC_CODE <- FN_WITHOUT_ROXY
+    output <- test_it(lst)
+    fails(output)
+  }
+)
+
+test_that(
+  "test check_roxy_param_matches() fails on a function with a mismatched roxygen element", {
+    lst <- list()
+    # Solution code not considered
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_roxy_param_matches('x', 'character vector', fixed = TRUE)"
+    lst$DC_CODE <- FN_WITH_ROXY
+    output <- test_it(lst)
+    fails(output)
+  }
+)
+
 
 
 

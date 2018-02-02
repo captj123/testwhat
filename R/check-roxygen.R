@@ -131,4 +131,20 @@ check_has_roxy_param <- function(state, param_name, index = 1L, missing_msg = NU
   check_that(is_false(actual), feedback = missing_msg)
 }
 
-# state, param_name, param_desc_regex, fixed = FALSE, index = 1L, , not_typed_msg = NULL, append = TRUE) {
+#' @rdname check_has_roxy
+#' @export
+check_roxy_param_matches <- function(state, param_name, regex, fixed = FALSE, index = 1L, not_typed_msg = NULL, append = TRUE) {
+  check_has_roxy_param(state, param_name, index)
+  
+  student_pd <- state$get("student_pd")
+  
+  if(is.null(not_typed_msg)) {
+    not_typed_msg <- sprintf(
+      "The '%s' param of roxygen block '%s' does not match '%s'.", 
+      param_name, index, regex
+    )
+  }
+  actual <- student_pd[[index]][["param"]][[param_name]]
+  num_hits <- get_num_hits(regex = regex, x = actual, fixed = fixed)
+  check_that(is_gte(num_hits, 1L), feedback = not_typed_msg)
+}
