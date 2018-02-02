@@ -229,7 +229,7 @@ test_that(
 context("check_roxy_param_matches")
 
 test_that(
-  "test check_has_roxy_param() passes on a function with that roxygen param", {
+  "test check_roxy_param_matches() passes on a function with that roxygen param", {
     lst <- list()
     # Solution code not considered
     lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_roxy_param_matches('na.rm', '[lL]ogical.*remove missing')"
@@ -335,7 +335,50 @@ test_that(
   }
 )
 
+# check_roxy_example_matches ----------------------------------------------
 
+context("check_roxy_example_matches")
 
+test_that(
+  "test check_roxy_example_matches() passes on a function with matching roxygen example", {
+    lst <- list()
+    # Solution code not considered
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_roxy_example_matches('geomean\\\\(.*\\\\)')"
+    lst$DC_CODE <- FN_WITH_ROXY
+    output <- test_it(lst)
+    passes(output)
+  }
+)
 
+test_that(
+  "test check_roxy_example_matches() passes on a function with a fixed-matching roxygen element", {
+    lst <- list()
+    # Solution code not considered
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_roxy_example_matches('geomean(', fixed = TRUE)"
+    lst$DC_CODE <- FN_WITH_ROXY
+    output <- test_it(lst)
+    passes(output)
+  }
+)
 
+test_that(
+  "test check_roxy_example_matches() fails on a function without roxygen examples", {
+    lst <- list()
+    # Solution code not considered
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_roxy_example_matches('geomean(', fixed = TRUE)"
+    lst$DC_CODE <- YET_ANOTHER_FN_WITH_ROXY
+    output <- test_it(lst)
+    fails(output)
+  }
+)
+
+test_that(
+  "test check_roxy_example_matches() fails on a function with a mismatched roxygen element", {
+    lst <- list()
+    # Solution code not considered
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_roxy_example_matches('geomean(', fixed = TRUE)"
+    lst$DC_CODE <- ANOTHER_FN_WITH_ROXY
+    output <- test_it(lst)
+    fails(output)
+  }
+)

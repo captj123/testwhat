@@ -192,3 +192,21 @@ check_roxy_examples_result_equals <- function(state, index = 1L, incorrect_msg =
   
   check_that(is_equal(actual, expected), feedback = incorrect_msg)
 }
+
+#' @rdname check_has_roxy
+#' @export
+check_roxy_example_matches <- function(state, regex, fixed = FALSE, index = 1L, not_typed_msg = NULL, append = TRUE) {
+  check_roxy_examples_run(state, index)
+  
+  student_pd <- state$get("student_pd")
+  
+  if(is.null(not_typed_msg)) {
+    not_typed_msg <- sprintf(
+      "The examples of roxygen block '%s' do not match '%s'.", 
+      index, regex
+    )
+  }
+  actual <- student_pd[[index]][["examples"]]
+  num_hits <- get_num_hits(regex = regex, x = actual, fixed = fixed)
+  check_that(is_gte(num_hits, 1L), feedback = not_typed_msg)
+}
