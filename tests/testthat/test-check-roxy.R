@@ -40,6 +40,7 @@ harmmean <- function(x, na.rm = FALSE) {
   1 / mean(1 / x, na.rm = na.rm)
 }"
 
+# check_has_roxy ----------------------------------------------------------
 
 context("check_has_roxy")
 

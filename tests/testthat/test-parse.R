@@ -175,7 +175,7 @@ test_that("unit test: ___ in the string", {
 
 test_that(
   "parse_rcpp parses CPP code with R in it", {
-    # Cast actual and expected to data.frame to avoid comparing scrfile
+    # Cast actual and expected to data.frame to avoid comparing srcfile
     #  attribute, which has a different timestamp
     expected_pd <- testwhat:::build_pd("var(1:10)") %>% 
       data.frame()

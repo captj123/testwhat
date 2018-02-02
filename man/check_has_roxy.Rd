@@ -89,15 +89,32 @@ is present.
 the \code{index} block of roxygen is equal to the value in the solution code.
 \code{check_roxy_element_matches} checks that the \code{element} element of 
 the \code{index} block of roxygen matches a regular expression or string.
+\code{check_roxy_param_equals} checks that the \code{param_name} parameter of 
+the \code{index} block of roxygen is equal to the value in the solution code.
+\code{check_roxy_param_matches} checks that the \code{param_name} element of 
+the \code{index} block of roxygen matches a regular expression or string.
+\code{check_roxy_example_results} checks that the final result of running the
+\code{examples} in the \code{index} block of roxygen is equal to the value in
+the solution code.
+\code{check_roxy_example_matches} check that the \code{examples} of the 
+\code{index} block of roxygen matches a regular expression or string.
+
+Only \code{check_roxy_element_equals} and \code{check_roxy_example_results}
+require the solution. The other checks can safely be run with 
+'___BLOCK_SOLUTION_EXEC___'.
 }
 \examples{
 \dontrun{
   # Always begin by calling parse_roxy() on the exercise state.
   ex() \%>\% parse_roxy() \%>\% {
-    check_has_roxy(., index = 2)
-    check_has_roxy_element(., 'title', index = 2)
+    check_has_roxy(.)
+    check_has_roxy_element(., 'title')
     check_roxy_element_equals(., 'description', 'This is a mean function')
     check_roxy_element_matches(., 'return', 'integer +vector')
+    check_roxy_param_equals(., 'x', 'A numeric vector.')
+    check_roxy_param_matches(., 'na.rm', '[Ll]ogical.*missing.')
+    check_roxy_example_results(., 10)
+    check_roxy_example_matches(., 'mean\\\\\\\\(.*\\\\\\\\)')
   }
 }
 }
