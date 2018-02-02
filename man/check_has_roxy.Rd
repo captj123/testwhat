@@ -7,6 +7,7 @@
 \alias{check_roxy_element_matches}
 \alias{check_has_roxy_param}
 \alias{check_roxy_param_matches}
+\alias{check_roxy_examples_run}
 \title{Check the roxygen comments}
 \usage{
 check_has_roxy(state, index = 1L, missing_msg = NULL, append = TRUE)
@@ -25,6 +26,9 @@ check_has_roxy_param(state, param_name, index = 1L, missing_msg = NULL,
 
 check_roxy_param_matches(state, param_name, regex, fixed = FALSE,
   index = 1L, not_typed_msg = NULL, append = TRUE)
+
+check_roxy_examples_run(state, index = 1L, not_runnable_msg = NULL,
+  append = TRUE)
 }
 \arguments{
 \item{state}{The state of the exercise, as returned from \code{\link{parse_roxy}}.}

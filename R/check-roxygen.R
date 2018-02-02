@@ -148,3 +148,24 @@ check_roxy_param_matches <- function(state, param_name, regex, fixed = FALSE, in
   num_hits <- get_num_hits(regex = regex, x = actual, fixed = fixed)
   check_that(is_gte(num_hits, 1L), feedback = not_typed_msg)
 }
+
+#' @rdname check_has_roxy
+#' @export
+check_roxy_examples_run <- function(state, index = 1L, not_runnable_msg = NULL, append = TRUE) {
+  check_has_roxy_element(state, "examples", index)
+  
+  student_pd <- state$get("student_pd")
+  
+  if(is.null(not_runnable_msg)) {
+    not_runnable_msg <- sprintf(
+      "The examples of roxygen block '%s' are not runnable.", 
+      index
+    )
+  }
+  actual <- student_pd[[index]][["examples"]]
+  is_runnable <- tryCatch(
+    {eval(parse(text = actual)); TRUE},
+    error = function(e) FALSE
+  )
+  check_that(is_true(is_runnable), feedback = not_runnable_msg)
+}

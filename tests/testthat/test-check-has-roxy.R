@@ -10,6 +10,7 @@ FN_WITH_ROXY <- "#' Geometric mean
 #' @return The geometric mean of \\code{x}.
 #' @examples 
 #' geomean(rlnorm(100, log(5), 0.1)) # more or less 5
+#' geomean(rlnorm(100, log(10), 0.1)) # more or less 10
 #' @export
 geomean <- function(x, na.rm = FALSE) {
   exp(mean(log(x), na.rm = na.rm))
@@ -20,12 +21,24 @@ ANOTHER_FN_WITH_ROXY <- "#' Hypotenuse
 #' Calculate a hypotenuse.
 #' @param x A numeric vector of non-negative numbers.
 #' @param y A numeric vector of non-negative numbers.
-#' @return The geometric mean of \\code{x}.
+#' @return The hypotenuse of \\code{x}.
 #' @examples 
-#' hypotenuse(c(3, 5), c(4, 12))
+#' hypotenuse(c(3, 5), c(4, 12)) 
+#' hypotenuse('a', 'b')          # throws an error
 #' @export
 hypotenuse <- function(x, y) {
   sqrt(x ^ 2 + y ^ 2)
+}"
+
+YET_ANOTHER_FN_WITH_ROXY <- "#' Harmonic mean
+#' 
+#' Calculate a harmonic mean.
+#' @param x A numeric vector of non-zero numbers.
+#' @param na.rm Logical. If \\code{TRUE}, remove missing values before calculating.
+#' @return The harmonic mean of \\code{x}.
+#' @export
+harmmean <- function(x, na.rm = FALSE) {
+  1 / mean(1 / x, na.rm = na.rm)
 }"
 
 
@@ -260,6 +273,42 @@ test_that(
   }
 )
 
+# check_roxy_examples_run -------------------------------------------------
+
+context("check_roxy_examples_run")
+
+test_that(
+  "test check_roxy_examples_run() passes on a function with runnable roxygen examples", {
+    lst <- list()
+    # Solution code not considered
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_roxy_examples_run()"
+    lst$DC_CODE <- FN_WITH_ROXY
+    output <- test_it(lst)
+    passes(output)
+  }
+)
+
+test_that(
+  "test check_roxy_examples_run() fails on a function with no roxygen examples", {
+    lst <- list()
+    # Solution code not considered
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_roxy_examples_run()"
+    lst$DC_CODE <- ANOTHER_FN_WITH_ROXY
+    output <- test_it(lst)
+    fails(output)
+  }
+)
+
+test_that(
+  "test check_roxy_examples_run() fails on a function with non-runnable roxygen examples", {
+    lst <- list()
+    # Solution code not considered
+    lst$DC_SCT <- "ex() %>% parse_roxy() %>% check_roxy_examples_run()"
+    lst$DC_CODE <- ANOTHER_FN_WITH_ROXY
+    output <- test_it(lst)
+    fails(output)
+  }
+)
 
 
 
