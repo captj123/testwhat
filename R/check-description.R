@@ -49,3 +49,21 @@ check_has_desc_element <- function(state, element, missing_msg = NULL, append = 
   actual <- is.null(student_pd[[element]])
   check_that(is_false(actual), feedback = missing_msg)
 }
+
+#' @rdname check_has_desc_element
+#' @export
+check_desc_element_matches <- function(state, element, regex, fixed = FALSE, times = 1L, not_typed_msg = NULL, append = TRUE) {
+  check_has_desc_element(state, element)
+  
+  student_pd <- state$get("student_pd")
+  
+  if(is.null(not_typed_msg)) {
+    not_typed_msg <- sprintf(
+      "The '%s' element of the DESCRIPTION  does not match '%s'.", 
+      element, regex
+    )
+  }
+  actual <- student_pd[[element]]
+  num_hits <- get_num_hits(regex = regex, x = actual, fixed = fixed)
+  check_that(is_gte(num_hits, times), feedback = not_typed_msg)
+}

@@ -2,9 +2,13 @@
 % Please edit documentation in R/check-description.R
 \name{check_has_desc_element}
 \alias{check_has_desc_element}
+\alias{check_desc_element_matches}
 \title{Check the DESCRIPTION fields}
 \usage{
 check_has_desc_element(state, element, missing_msg = NULL, append = TRUE)
+
+check_desc_element_matches(state, element, regex, fixed = FALSE, times = 1L,
+  not_typed_msg = NULL, append = TRUE)
 }
 \arguments{
 \item{state}{The state of the exercise, as returned from \code{\link{parse_desc}}.}
@@ -25,12 +29,12 @@ a regular expression. See \code{\link{check_code}}.}
 \item{times}{Positive integer. Denotes the number of times the string in 
 \code{regex} should be matched.}
 
-\item{incorrect_msg}{Optional string. Used to override the feedback message
-in the event of failure.}
-
 \item{not_typed_msg}{Optional string. Used to override the feedback message
 in the event of failure.
 incorrect_msg}
+
+\item{incorrect_msg}{Optional string. Used to override the feedback message
+in the event of failure.}
 }
 \value{
 This function is invoked for the side effect of registering feedback 
