@@ -16,7 +16,8 @@ Imports:
     magrittr,
     praise,
     roxygen2,
-    stats
+    stats,
+    utils
 Suggests:
     knitr,
     rmarkdown,

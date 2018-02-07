@@ -3,12 +3,24 @@
 \name{check_has_desc_element}
 \alias{check_has_desc_element}
 \alias{check_desc_element_matches}
+\alias{check_desc_version}
+\alias{check_desc_date}
+\alias{check_desc_authors_at_r}
 \title{Check the DESCRIPTION fields}
 \usage{
 check_has_desc_element(state, element, missing_msg = NULL, append = TRUE)
 
 check_desc_element_matches(state, element, regex, fixed = FALSE, times = 1L,
   not_typed_msg = NULL, append = TRUE)
+
+check_desc_version(state, expected, bad_format_msg = NULL,
+  incorrect_msg = NULL, append = TRUE)
+
+check_desc_date(state, expected = Sys.Date(), bad_format_msg = NULL,
+  incorrect_msg = NULL, append = TRUE)
+
+check_desc_authors_at_r(state, expected, bad_format_msg = NULL,
+  incorrect_msg = NULL, append = TRUE)
 }
 \arguments{
 \item{state}{The state of the exercise, as returned from \code{\link{parse_desc}}.}
@@ -30,6 +42,11 @@ a regular expression. See \code{\link{check_code}}.}
 \code{regex} should be matched.}
 
 \item{not_typed_msg}{Optional string. Used to override the feedback message
+in the event of failure.}
+
+\item{expected}{The expected value.}
+
+\item{bad_format_msg}{Optional string. Used to override the feedback message
 in the event of failure.
 incorrect_msg}
 
@@ -50,13 +67,25 @@ the DESCRIPTION matches a regular expression or string.
 \description{
 Check that the DESCRIPTION fields provided by the student are correct.
 }
+\note{
+None of these functions use solution code. In order to facilitate this,
+the design of \code{check_desc_version},  \code{check_desc_date}, and
+ \code{check_desc_authors_at_r} differs from other testwhat check functions
+ in that they require an \code{expected} argument, which takes the expected
+ value. This is coerced into a \code{package_version}, \code{Date}, or 
+ \code{person} object.
+}
 \examples{
 \dontrun{
   # Always begin by calling parse_desc() on the exercise state.
-  ex() \%>\% parse_roxy() \%>\% {
+  ex() \%>\% parse_desc() \%>\% {
     check_has_desc_element(., 'title')
-    check_roxy_element_equals(., 'version', as.numeric_version('1.0.0'))
     check_roxy_element_matches(., 'description', 'data.+manipulation')
+    check_desc_version(., '1.0.0')
+    check_desc_date(., '1919-10-18')
+    check_desc_authors_at_r(., 
+      'Richie Cotton <richie@datacamp.com> [cre, aut]'
+    )
   }
 }
 }

@@ -180,13 +180,7 @@ parse_roxy <- function(state) {
 #' Parses a package DESCRIPTION file and extracts the tags. Mostly just a
 #' wrapper around \code{\link[base]{read.dcf}}.
 #' @param lines A character vector of lines of a DESCRIPTION file.
-#' @return A list of DESCRIPTION fields. They are all character vectors, 
-#' except 
-#' \itemize{
-#' \item{Version, which is a \code{numeric_version} object.}
-#' \item{Date, which is a \code{Date} object.}
-#' \item{`Authors@R`, which is an \code{person} object.}
-#' }
+#' @return A list of DESCRIPTION fields. They are all character vectors.
 #' @examples 
 #' # Base package
 #' desc_lines <- readLines(system.file("DESCRIPTION"))
@@ -201,15 +195,15 @@ extract_description_from_code <- function(lines) {
   on.exit(close(tc))
   dcf <- read.dcf(tc)
   desc <- setNames(as.list(dcf), colnames(dcf))
-  desc$Version <- if(!is.null(desc$Version)) {
-    as.numeric_version(desc$Version)
-  }
-  desc$Date <- if(!is.null(desc$Date)) {
-    as.Date(desc$Date)
-  }
-  desc$`Authors@R` <- if(!is.null(desc$`Authors@R`)) {
-    eval(parse(text = desc$`Authors@R`))
-  }
+  # desc$Version <- if(!is.null(desc$Version)) {
+  #   as.numeric_version(desc$Version)
+  # }
+  # desc$Date <- if(!is.null(desc$Date)) {
+  #   as.Date(desc$Date)
+  # }
+  # desc$`Authors@R` <- if(!is.null(desc$`Authors@R`)) {
+  #   eval(parse(text = desc$`Authors@R`))
+  # }
   desc
 }
 
