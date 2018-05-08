@@ -9,7 +9,8 @@ The `testwhat` package provides rich functionality to write Submission Correctne
 ## Reference
 
 * Teach on DataCamp: https://authoring.datacamp.com
-* What is an SCT? https://authoring.datacamp.com/courses/sct.html
+* How do submissions correctness tests work? https://authoring.datacamp.com/courses/sct.html
+* `testwhat` reference documentation and vignettes: https://datacamp.github.io/testwhat
 
 ## Installation
 
