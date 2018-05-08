@@ -31,11 +31,11 @@
 <meta property="og:title" content="Test predefined R objects — test_predefined_objects" />
 
 <meta property="og:description" content="At the start of your SCT, you typically want to check whether some predefined
-variables are still correct. test_predefined_object allows you to 
-specify a vector of object names, together with a vector of equivalence 
-conditions, evaluation specifications, undefined an incorrect messages. As 
-such, test_predefined_objects is a vectorized wrapper around 
-check_object with meaningful defeault feedback messages that 
+variables are still correct. test_predefined_object allows you to
+specify a vector of object names, together with a vector of equivalence
+conditions, evaluation specifications, undefined an incorrect messages. As
+such, test_predefined_objects is a vectorized wrapper around
+check_object with meaningful defeault feedback messages that
 tell the student to not adapt predefined objects and code in the sample code." />
 <meta name="twitter:card" content="summary" />
 
@@ -141,11 +141,11 @@ tell the student to not adapt predefined objects and code in the sample code." /
     <div class="ref-description">
     
     <p>At the start of your SCT, you typically want to check whether some predefined
-variables are still correct. <code>test_predefined_object</code> allows you to 
-specify a vector of object names, together with a vector of equivalence 
-conditions, evaluation specifications, undefined an incorrect messages. As 
-such, <code>test_predefined_objects</code> is a vectorized wrapper around 
-<code><a href='test_object.html'>check_object</a></code> with meaningful defeault feedback messages that 
+variables are still correct. <code>test_predefined_object</code> allows you to
+specify a vector of object names, together with a vector of equivalence
+conditions, evaluation specifications, undefined an incorrect messages. As
+such, <code>test_predefined_objects</code> is a vectorized wrapper around
+<code><a href='test_object.html'>check_object</a></code> with meaningful defeault feedback messages that
 tell the student to not adapt predefined objects and code in the sample code.</p>
     
     </div>
@@ -162,21 +162,22 @@ tell the student to not adapt predefined objects and code in the sample code.</p
     </tr>
     <tr>
       <th>eq_condition</th>
-      <td><p>vector version of <code>eq_condition</code> of 
-<code><a href='s3definitions.html'>check_equal</a></code>.</p></td>
+      <td><p>character vector indicating how to compare. See
+<code><a href='is_equal.html'>is_equal</a></code>.</p></td>
     </tr>
     <tr>
       <th>eval</th>
-      <td><p>vector version of <code>eval</code> of <code><a href='s3definitions.html'>check_equal</a></code>.</p></td>
+      <td><p>logical vector indicating whether or not you want to check only
+the objects' existence or also whether their values match the solution.</p></td>
     </tr>
     <tr>
       <th>undefined_msg</th>
-      <td><p>vector version of <code>undefined_msg</code> of 
+      <td><p>vector version of <code>undefined_msg</code> of
 <code><a href='test_object.html'>check_object</a></code></p></td>
     </tr>
     <tr>
       <th>incorrect_msg</th>
-      <td><p>vector version of <code>incorrect_msg</code> of 
+      <td><p>vector version of <code>incorrect_msg</code> of
 <code><a href='test_object.html'>check_object</a></code></p></td>
     </tr>
     </table>
@@ -184,7 +185,7 @@ tell the student to not adapt predefined objects and code in the sample code.</p
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Suppose the sample code specifies the variables a, b and c, </span>
+<span class='co'># Suppose the sample code specifies the variables a, b and c,</span>
 <span class='co'># and you want to check that a, b and c haven't changed.</span>
 <span class='fu'>test_predefined_objects</span>(<span class='fu'>c</span>(<span class='st'>"a"</span>, <span class='st'>"b"</span>, <span class='st'>"c"</span>))
 <span class='co'># }</span><div class='input'>

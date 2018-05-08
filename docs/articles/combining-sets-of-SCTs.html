@@ -120,10 +120,10 @@
 <a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># Calculate result</span></a>
 <a class="sourceLine" id="cb1-5" data-line-number="5">result &lt;-<span class="st"> </span><span class="kw">mean</span>(vec)</a></code></pre></div>
 <p>You want the SCT to pass when the student manages to store the correct value in the object <code>result</code>. How <code>result</code> was calculated, does not matter to you: as long as <code>result</code> is correct, the SCT should accept the submission. If something <code>result</code> is not correct, you want to dig a little deeper and see if the student used the <code>mean()</code> function correctly. The following SCT will do just that:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="../reference/check_logic.html">check_correct</a></span>(<span class="kw">ex</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/test_object.html">check_object</a></span>(<span class="st">"result"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/s3definitions.html">check_equal</a></span>(),</a>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="../reference/check_logic.html">check_correct</a></span>(<span class="kw">ex</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/test_object.html">check_object</a></span>(<span class="st">"result"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">check_equal</span>(),</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">              {</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">                <span class="kw">ex</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/s3definitions.html">check_error</a></span>()</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">                <span class="kw">ex</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_fun_op.html">check_function</a></span>(<span class="st">"mean"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_fun_op.html">check_arg</a></span>(<span class="st">"x"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/s3definitions.html">check_equal</a></span>()</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">                <span class="kw">ex</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">check_error</span>()</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">                <span class="kw">ex</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_function</a></span>(<span class="st">"mean"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_arg</a></span>(<span class="st">"x"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">check_equal</span>()</a>
 <a class="sourceLine" id="cb2-5" data-line-number="5">              })</a></code></pre></div>
 <p>Notice that it’s perfectly possible to specify more than one SCT function call in the arguments as the second sub-SCT shows.</p>
 <p>Let’s go over what happens when the student submits different versions of the fifth line of code in the solution:</p>
@@ -148,9 +148,9 @@
 <ul>
 <li>
 <code><a href="../reference/check_logic.html">check_correct()</a></code> executes the first sub-SCT chain.</li>
-<li>This sub-SCT chain fails <em>silently</em>, so <code><a href="../reference/check_logic.html">check_correct()</a></code> heads over to the second, ‘diagnose’ sub-SCT chain (<code><a href="../reference/check_fun_op.html">check_function()</a></code> etc)</li>
+<li>This sub-SCT chain fails <em>silently</em>, so <code><a href="../reference/check_logic.html">check_correct()</a></code> heads over to the second, ‘diagnose’ sub-SCT chain (<code><a href="../reference/check_function.html">check_function()</a></code> etc)</li>
 <li>
-<code><a href="../reference/check_fun_op.html">check_function()</a></code> will fail, because the parameter passed to <code>mean()</code> does not correspond to the argument passed in the solution.</li>
+<code><a href="../reference/check_function.html">check_function()</a></code> will fail, because the parameter passed to <code>mean()</code> does not correspond to the argument passed in the solution.</li>
 <li>The overall SCT fails, with a meaningful, specific feedback message: you did not correctly specify the argument inside <code>mean()</code>.</li>
 </ul>
 </li>
@@ -158,7 +158,7 @@
 <ul>
 <li>
 <code><a href="../reference/check_logic.html">check_correct()</a></code> executes the first sub-SCT chain</li>
-<li>This sub-SCT chain fails <em>silently</em>, so <code><a href="../reference/check_logic.html">check_correct()</a></code> heads over to the second, ‘diagnose’ sub-SCT chain (<code><a href="../reference/check_fun_op.html">check_function()</a></code> etc)</li>
+<li>This sub-SCT chain fails <em>silently</em>, so <code><a href="../reference/check_logic.html">check_correct()</a></code> heads over to the second, ‘diagnose’ sub-SCT chain (<code><a href="../reference/check_function.html">check_function()</a></code> etc)</li>
 <li>Both functions in the second sub-SCT chain pass, because <code>mean()</code> is called in exactly the same way in the student code as in the solution.</li>
 <li>Because there is clearly something wrong - <code>result</code> is not correct - the ‘check’ sub-SCT, <code>ex() %&gt;% test_object("result")</code> is executed again, but <em>loudly</em> this time.</li>
 <li>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check whether the student printed something to the console — check_output • testwhat</title>
+<title>Check whether a file exists — check_wd • testwhat</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -28,9 +28,9 @@
 
 
 
-<meta property="og:title" content="Check whether the student printed something to the console — check_output" />
+<meta property="og:title" content="Check whether a file exists — check_wd" />
 
-<meta property="og:description" content="Check the output of the submission to see if it contains certain elements." />
+<meta property="og:description" content="Check whether a file exists" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -127,24 +127,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Check whether the student printed something to the console</h1>
-    <small class="dont-index">Source: <a href='https://github.com/datacamp/testwhat/blob/master/R/check-output.R'><code>R/check-output.R</code></a></small>
-    <div class="hidden name"><code>check_output.Rd</code></div>
+    <h1>Check whether a file exists</h1>
+    <small class="dont-index">Source: <a href='https://github.com/datacamp/testwhat/blob/master/R/check-wd.R'><code>R/check-wd.R</code></a></small>
+    <div class="hidden name"><code>check_wd.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Check the output of the submission to see if it contains certain elements.</p>
+    <p>Check whether a file exists</p>
     
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for default</span>
-<span class='fu'>check_output</span>(<span class='no'>state</span>, <span class='no'>regex</span>, <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>trim</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>output_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>missing_msg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>)
-
-<span class='fu'>check_output_expr</span>(<span class='no'>state</span>, <span class='no'>expr</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>missing_msg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>check_wd</span>(<span class='no'>state</span>, <span class='no'>path</span>, <span class='kw'>missing_msg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,88 +148,30 @@
       <td><p>the state to start from</p></td>
     </tr>
     <tr>
-      <th>regex</th>
-      <td><p>the regular expression or pattern to look for</p></td>
-    </tr>
-    <tr>
-      <th>fixed</th>
-      <td><p>if fixed is TRUE, <code>regex</code> will be sought for 'as is' in the
-output, if fixed = FALSE (the default), <code>regex</code> will be treated as
-actual regular expression.</p></td>
-    </tr>
-    <tr>
-      <th>trim</th>
-      <td><p>should the student output be trimmed, so that all newlines and
-spaces are removed, before checking?</p></td>
-    </tr>
-    <tr>
-      <th>times</th>
-      <td><p>how often should the pattern/expression output be found?</p></td>
-    </tr>
-    <tr>
-      <th>output_only</th>
-      <td><p>Consider only regular output, or also messages, warnings
-and error? <code>FALSE</code> by default for <code>check_output</code> (so it considers
-all kinds of output). You cannot specify this argument for
-<code>check_output_expr</code> and <code>test_output_contains</code>.</p></td>
+      <th>path</th>
+      <td><p>Path to the file you want to check</p></td>
     </tr>
     <tr>
       <th>missing_msg</th>
-      <td><p>Custom message in case the pattern or output wasn't found
-often enough.</p></td>
-    </tr>
-    <tr>
-      <th>append</th>
-      <td><p>Whether or not to append the feedback to feedback built in
-previous states</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>S3 stuff</p></td>
-    </tr>
-    <tr>
-      <th>expr</th>
-      <td><p>The expression (as string) for which the output should be in the
-student's console output.</p></td>
+      <td><p>Custom feedback message in case the file is missing</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>With <code>check_output</code>, you can simply specify a regular expression or
-pattern (depending on the value of <code>fixed</code>) that is looked for in the
-student's output. By default, regular output, messages, warnings and errors
-are considered.</p>
-<p>With <code>test_output_contains</code> and <code>check_output_expr</code> you can pass an
-expression, that is executed in the student environment, and whose output is 
-compared to the output the student generated. If the generated output is found
-in the student's output, the check passes. By default, only regular output is
-considered.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Example 1</span>
-<span class='no'>mtcars</span>
+<span class='co'># Example 1 solution code:</span>
+<span class='co'># write("hello", file = "test.txt")</span>
 
 <span class='co'># SCT</span>
-<span class='fu'>ex</span>() <span class='kw'>%&gt;%</span> <span class='fu'>check_output_expr</span>(<span class='st'>"mtcars"</span>)
-
-<span class='co'># Example 2</span>
-<span class='fu'>print</span>(<span class='st'>"hello!"</span>)
-
-<span class='co'># SCT (robust)</span>
-<span class='fu'>ex</span>() <span class='kw'>%&gt;%</span> <span class='fu'>check_output</span>(<span class='st'>"[H|h]ello\\!*"</span>)
-<span class='co'># }</span><div class='input'>
-</div></pre>
+<span class='fu'>ex</span>() <span class='kw'>%&gt;%</span> <span class='fu'>check_wd</span>(<span class='st'>"test.txt"</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#details">Details</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 

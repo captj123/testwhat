@@ -111,7 +111,7 @@
 <div id="search-for-pattern-in-output" class="section level2">
 <h2 class="hasAnchor">
 <a href="#search-for-pattern-in-output" class="anchor"></a>Search for pattern in output</h2>
-<p><code>check_output()</code> enables you to check for patterns or literal matches in the output the student generated with his or her submission. Where <code><a href="../reference/check_output.html">check_output_expr()</a></code> (see next section) <em>executes</em> the <code>expr</code> argument you pass it and then tries to match it to the student’s output, the <code>check_output()</code> function doesn’t perform any execution: it simply looks for matches for the <code>pattern</code> you specify.</p>
+<p><code><a href="../reference/check_output.html">check_output()</a></code> enables you to check for patterns or literal matches in the output the student generated with his or her submission. Where <code><a href="../reference/check_output.html">check_output_expr()</a></code> (see next section) <em>executes</em> the <code>expr</code> argument you pass it and then tries to match it to the student’s output, the <code><a href="../reference/check_output.html">check_output()</a></code> function doesn’t perform any execution: it simply looks for matches for the <code>pattern</code> you specify.</p>
 <div id="example" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h3>
@@ -119,7 +119,7 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># Print out your name</span></a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="st">"My name is DataCamp"</span></a></code></pre></div>
 <p>To allow for different names here, you can use the following SCT:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">ex</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">check_output</span>(<span class="st">"[M|m]y name is [a-zA-Z]+?"</span>, <span class="dt">missing_msg =</span> <span class="st">"Have you printed out your name?"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">ex</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_output.html">check_output</a></span>(<span class="st">"[M|m]y name is [a-zA-Z]+?"</span>, <span class="dt">missing_msg =</span> <span class="st">"Have you printed out your name?"</span>)</a></code></pre></div>
 <p>The regex allows you to allow both <code>my</code> and <code>My</code>, and to allow any name, as long as its first character is a letter and there’s at least one such character.</p>
 <p><a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html">Click here to learn more about regular expressions in R</a>.</p>
 </div>
