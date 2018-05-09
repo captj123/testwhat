@@ -138,8 +138,8 @@ if_state &lt;- ex() %&gt;% check_if_else() %&gt;% {
 <ul>
 <li>
 <code><a href="../reference/check_control.html">check_if_else()</a></code> will check whether an <code>if</code> statement was coded, and will afterwards ‘zoom in’ on the if statement only.</li>
-<li>Chain A: <code><a href="../reference/check_control.html">check_cond()</a></code> will consequently zoom in on the condition part of the <code>if</code> statement. Hence, <code><a href="../reference/check_code.html">check_code()</a></code> will only look inside the condition of the <code>if</code> statement of the student’s submission.</li>
-<li>Chain B: Similarly, <code><a href="../reference/check_control.html">check_if()</a></code> starts from the <code>if</code> statement, and zooms in on the body of the <code>if</code> statement, after which <code><a href="../reference/check_function.html">check_function()</a></code> will only look for the <code>print</code> call inside the body, ignoring anything outside of it.</li>
+<li>Chain A: <code><a href="../reference/check_control.html">check_cond()</a></code> will consequently zoom in on the condition part of the <code>if</code> statement, so <code><a href="../reference/check_code.html">check_code()</a></code> will only look inside this fragment of the student submission.</li>
+<li>Chain B: Similarly, <code><a href="../reference/check_control.html">check_if()</a></code> starts from the <code>if</code> statement, and zooms in on the body of the <code>if</code> statement, after which <code><a href="../reference/check_function.html">check_function()</a></code> will only look for the <code>print</code> call inside this fragment of the student submission.</li>
 </ul>
 <p>To further explain this example, assume the following student submission:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">4</span>
@@ -149,29 +149,29 @@ if (x &lt;<span class="st"> </span><span class="dv">0</span>) {
 <p>In chain A, this is what happens:</p>
 <ul>
 <li>
-<code><a href="../reference/check_control.html">check_if_else()</a></code> considers the entire submission (as contained in <code>ex()</code>), and produces a ‘child state’ that contains the <code>if</code> statements in student and solution:</li>
+<code><a href="../reference/check_control.html">check_if_else()</a></code> considers the entire submission (as contained in <code>ex()</code>), and produces a child state that contains the <code>if</code> statements in student and solution:</li>
 </ul>
 <p>```r # solution if (x &gt; 0) { print(“x is positive”) }</p>
 <p># student if (x &lt; 0) { print(“x is negative”) } ```</p>
 <ul>
 <li>
-<code><a href="../reference/check_control.html">check_cond()</a></code> considers the state above produced by <code><a href="../reference/check_control.html">check_if_else()</a></code>, and produces a ‘child state’ with only the condition parts of the <code>if</code> statements:</li>
+<code><a href="../reference/check_control.html">check_cond()</a></code> considers the state above produced by <code><a href="../reference/check_control.html">check_if_else()</a></code>, and produces a child state with only the condition parts of the <code>if</code> statements:</li>
 </ul>
 <p>```r # solution x &gt; 0</p>
 <p># student x &lt; 0 ```</p>
 <ul>
 <li>
-<code><a href="../reference/check_code.html">check_code()</a></code> considers the state above produced by <code><a href="../reference/check_control.html">check_cond()</a></code>, and tries to match the regexes to <code>x &lt; 0</code> in the student. None of the regexes match this fragment of the student code, so the test fails.</li>
+<code><a href="../reference/check_code.html">check_code()</a></code> considers the state above produced by <code><a href="../reference/check_control.html">check_cond()</a></code>, and tries to match the regexes to <code>x &lt; 0</code> student snippet. None of the regexes match, so the test fails.</li>
 </ul>
-<p>Assume now that the student corrects the mistake, and submits the following, which is still not correct:</p>
+<p>Assume now that the student corrects the mistake, and submits the following (which is still not correct):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">4</span>
 if (x &gt;<span class="st"> </span><span class="dv">0</span>) {
   <span class="kw">print</span>(<span class="st">"x is negative"</span>)
 }</code></pre></div>
-<p>Chain A will go through the same steps and will pass this time as <code>x &gt; 0</code> is matches one of the regexes. In Chain B, this is what happens:</p>
+<p>Chain A will go through the same steps and will pass this time as <code>x &gt; 0</code> in the student submission now matches one of the regexes. In Chain B, this is what happens:</p>
 <ul>
 <li>
-<code><a href="../reference/check_control.html">check_if()</a></code> considers the state produced by <code><a href="../reference/check_control.html">check_if_else()</a></code>, and produces a ‘child state’ with only the body parts of the <code>if</code> statements:</li>
+<code><a href="../reference/check_control.html">check_if()</a></code> considers the state produced by <code><a href="../reference/check_control.html">check_if_else()</a></code>, and produces a child state with only the body parts of the <code>if</code> statements:</li>
 </ul>
 <p>```r # solution print(“x is positive”)</p>
 <p># student print(“x is negative”) ```</p>
