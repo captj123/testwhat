@@ -130,7 +130,7 @@ x &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="
 <span class="kw">mean</span>(<span class="dv">1</span>:<span class="dv">10</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
 
 <span class="co"># sct</span>
-<span class="kw">ex</span>() %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_function</a></span>() %&gt;%<span class="st"> </span>{
+<span class="kw">ex</span>() %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_function</a></span>(<span class="st">"mean"</span>) %&gt;%<span class="st"> </span>{
   <span class="kw"><a href="../reference/check_function.html">check_arg</a></span>(., <span class="st">"x"</span>) %&gt;%<span class="st"> </span><span class="kw">check_equal</span>()
   <span class="kw"><a href="../reference/check_function.html">check_arg</a></span>(., <span class="st">"na.rm"</span>) %&gt;%<span class="st"> </span><span class="kw">check_equal</span>()
 }</code></pre></div>
@@ -139,18 +139,18 @@ x &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="
 <h3 class="hasAnchor">
 <a href="#check-object-created-through-function-call" class="anchor"></a>Check object created through function call</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># solution</span>
-<span class="kw">mean</span>(<span class="dv">1</span>:<span class="dv">10</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+x &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="dv">1</span>:<span class="dv">10</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
 
 <span class="co"># sct</span>
 <span class="kw"><a href="../reference/check_logic.html">check_correct</a></span>(<span class="kw">ex</span>() %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/test_object.html">check_object</a></span>(<span class="st">"x"</span>) %&gt;%<span class="st"> </span><span class="kw">check_equal</span>(),
-              <span class="kw">ex</span>() %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_function</a></span>() %&gt;%<span class="st"> </span>{
+              <span class="kw">ex</span>() %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_function</a></span>(<span class="st">"mean"</span>) %&gt;%<span class="st"> </span>{
                 <span class="kw"><a href="../reference/check_function.html">check_arg</a></span>(., <span class="st">"x"</span>) %&gt;%<span class="st"> </span><span class="kw">check_equal</span>()
                 <span class="kw"><a href="../reference/check_function.html">check_arg</a></span>(., <span class="st">"na.rm"</span>) %&gt;%<span class="st"> </span><span class="kw">check_equal</span>()
               })</code></pre></div>
 </div>
-<div id="checking-output" class="section level3">
+<div id="check-output" class="section level3">
 <h3 class="hasAnchor">
-<a href="#checking-output" class="anchor"></a>Checking output</h3>
+<a href="#check-output" class="anchor"></a>Check output</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># solution</span>
 <span class="kw">print</span>(mtcars)
 
@@ -162,9 +162,9 @@ x &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="
 <span class="co"># sct, robust against capitalization, multiple spaces and different names</span>
 <span class="kw">ex</span>() %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_output.html">check_output</a></span>(<span class="st">"[H|h]i,</span><span class="ch">\\</span><span class="st">s+[a-zA-Z]+?"</span>) </code></pre></div>
 </div>
-<div id="checking-control-flow" class="section level3">
+<div id="check-control-flow" class="section level3">
 <h3 class="hasAnchor">
-<a href="#checking-control-flow" class="anchor"></a>Checking control flow</h3>
+<a href="#check-control-flow" class="anchor"></a>Check control flow</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># solution</span>
 if (x) {
   <span class="kw">print</span>(<span class="st">"a"</span>)
@@ -188,9 +188,9 @@ for (i in <span class="dv">1</span>:<span class="dv">10</span>) {
   <span class="kw">check_body</span>(.) %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_function</a></span>(<span class="st">"print"</span>) %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_arg</a></span>(<span class="st">"x"</span>) %&gt;%<span class="st"> </span><span class="kw">check_equal</span>(<span class="dt">eval =</span> <span class="ot">FALSE</span>)
 }</code></pre></div>
 </div>
-<div id="checking-function-definition" class="section level3">
+<div id="check-function-definition" class="section level3">
 <h3 class="hasAnchor">
-<a href="#checking-function-definition" class="anchor"></a>Checking function definition</h3>
+<a href="#check-function-definition" class="anchor"></a>Check function definition</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># solution</span>
 my_fun &lt;-<span class="st"> </span>function(a, b) {
     <span class="kw">abs</span>(a) +<span class="st"> </span><span class="kw">abs</span>(b)
@@ -207,9 +207,9 @@ my_fun &lt;-<span class="st"> </span>function(a, b) {
   }
 }</code></pre></div>
 </div>
-<div id="checking-through-string-matching" class="section level3">
+<div id="check-through-string-matching" class="section level3">
 <h3 class="hasAnchor">
-<a href="#checking-through-string-matching" class="anchor"></a>Checking through string matching</h3>
+<a href="#check-through-string-matching" class="anchor"></a>Check through string matching</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># code</span>
 x &lt;-<span class="st"> "R is Rsome!"</span>
 
@@ -218,6 +218,24 @@ x &lt;-<span class="st"> "R is Rsome!"</span>
                     
 <span class="co"># sct, if it has to be exact (check_equal will generate good feedback)</span>
 <span class="kw">ex</span>() %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/test_object.html">check_object</a></span>(<span class="st">"x"</span>) %&gt;%<span class="st"> </span><span class="kw">check_equal</span>()</code></pre></div>
+</div>
+<div id="check-ggplot" class="section level3">
+<h3 class="hasAnchor">
+<a href="#check-ggplot" class="anchor"></a>Check ggplot</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># code</span>
+mtcars %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(wt, hp)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()
+
+<span class="co"># sct</span>
+<span class="kw">ex</span>() %&gt;%<span class="st"> </span>{
+  <span class="kw"><a href="../reference/check_function.html">check_function</a></span>(., <span class="st">"ggplot"</span>) %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_arg</a></span>(<span class="st">"data"</span>) %&gt;%<span class="st"> </span><span class="kw">check_equal</span>()
+  <span class="kw"><a href="../reference/check_function.html">check_function</a></span>(., <span class="st">"aes"</span>) %&gt;%<span class="st"> </span>{
+    <span class="kw"><a href="../reference/check_function.html">check_arg</a></span>(., <span class="st">"x"</span>) %&gt;%<span class="st"> </span><span class="kw">check_equal</span>(<span class="dt">eval =</span> <span class="ot">FALSE</span>) 
+    <span class="kw"><a href="../reference/check_function.html">check_arg</a></span>(., <span class="st">"y"</span>) %&gt;%<span class="st"> </span><span class="kw">check_equal</span>(<span class="dt">eval =</span> <span class="ot">FALSE</span>)
+  }
+  <span class="kw"><a href="../reference/check_function.html">check_function</a></span>(., <span class="st">"geom_point"</span>)
+}</code></pre></div>
 </div>
   </div>
 
