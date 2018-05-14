@@ -107,18 +107,54 @@
 
     
     
+<div id="success-message" class="section level2">
+<h2 class="hasAnchor">
+<a href="#success-message" class="anchor"></a>Success message</h2>
+<p>When all tests in an SCT pass, <code>testwhat</code> will automatically generate a congratulatory message to present to the student. If you want to override this ‘success message’, you can use the <code><a href="../reference/success_msg.html">success_msg()</a></code> function:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">ex</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/test_object.html">check_object</a></span>(<span class="st">"x"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">check_equal</span>()</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="../reference/success_msg.html">success_msg</a></span>(<span class="st">"Great job! You're getting goot at object assignment!"</span>)</a></code></pre></div>
+</div>
+<div id="multiple-choice-exercises" class="section level2">
+<h2 class="hasAnchor">
+<a href="#multiple-choice-exercises" class="anchor"></a>Multiple choice exercises</h2>
+<p>Multiple choice exercises are straightforward to test. Use <code><a href="../reference/test_mc.html">test_mc()</a></code> to provide tailored feedback for both the incorrect options, as the correct option. Below is the markdown source for a multiple choice exercise example, with an SCT that uses <code>test_mc</code>:</p>
+<pre><code>## The author of R
+
+```yaml
+type: MultipleChoiceExercise
+```
+
+Who is one of the authors of the R programming language?
+
+`@instructions`
+
+- Roy Co
+- Ronald McDonald
+- Ross Ihaka
+
+`@sct`
+
+```r
+msg1 &lt;- "That's someone who makes soups."
+msg2 &lt;- "That's a clown who likes burgers."
+msg3 &lt;- "Correct! Head over to the next exercise!"
+test_mc(correct = 3, 
+        feedback_msgs = c(msg1, msg2, msg3))
+```</code></pre>
+<p>The first argument of <code><a href="../reference/test_mc.html">test_mc()</a></code>, <code>correct</code>, should be the number of the correct answer in this list. Here, the correct answer is Ross Ihaka, corresponding to 3. The <code>feedback_msgs</code> argument should be a list of strings with a length equal to the number of options. We encourage you to provide feedback messages that are informative and tailored to the (incorrect) option that people selected. Make sure to correctly order the feedback message such that it corresponds to the possible answers that are listed in the instructions tab. Notice that there’s no need for <code><a href="../reference/success_msg.html">success_msg()</a></code> in multiple choice exercises, as you have to specify the success message inside <code><a href="../reference/test_mc.html">test_mc()</a></code>, along with the feedback for incorrect options.</p>
+</div>
 <div id="randomness" class="section level2">
 <h2 class="hasAnchor">
 <a href="#randomness" class="anchor"></a>Randomness</h2>
 <p>To check the correctness of function calls, R objects etc. <code>testwhat</code> uses a student and solution environment. The pre exercise code (PEC) and student submission are executed in the student environment. Likewise, the PEC and the solution code are executed in the solution envrionment.</p>
 <p>For basic exercises that don’t involve a random componenent, this works fine. As soon as your R code depends on pseudo-random numbers, however, this could imply a mismatch between objects in the student and solution code. To solve this, the R backend specifies seeds itself. (see <code>?set.seed</code> for more background)</p>
 <p>Before running the PEC in the student environment, the backend specifies a random seed based on the current time in seconds (i.e. a random seed). Before running the PEC in the solution environment, the same seed is reset. That way, the PEC leads to the exact same student and solution environments, even when randomly generated numbers are used. As an example, the following PEC will lead to the same <code>my_samples</code> object in both student and solution environment.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_samples &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">my_samples &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)</a></code></pre></div>
 <p>If you want to work with your own seed in the PEC, simply use <code>set.seed()</code> at the top of your script, which overrides the seed the backend specified:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">123</span>)
-my_samples &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">my_samples &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)</a></code></pre></div>
 <p>On exercise startup, the backend will run the solution code after running the PEC in the solution environment. Before the backend runs the solution code, however, a <em>script seed</em> will be specified with <code>set.seed()</code>. This random seed is again based on the current time. This same seed will be used to reset the seed before each submission of a student: that way, there will again be perfect correspondence between both environments. If you want to work with a custom script seed, you have two options. You can either place a <code>set.seed()</code> call at the top of both the sample and solution code and tell the student to not touch this. This is clearly non-ideal, so there’s a second option: the backend provides the function <code>custom_seed()</code>. Just like <code>set.seed()</code> it takes a number that is used as the seed. If you call this function in your pre exercise code, the backend will use this seed instead of its own randomly generated seed before executing the solution code in the solution environment and before executing the student submission in the student environment.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">custom_seed</span>(<span class="dv">1234</span>)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">custom_seed</span>(<span class="dv">1234</span>)</a></code></pre></div>
 <p><strong>In general, using <code>set.seed()</code> and <code>custom_seed()</code> in your exercises is not necessary to ensure correspondence between your student and solution environment: the backend takes care of this for you. These functions are only necessary if you want to manually set a seed for either the pre exercise code or the student/solution code</strong></p>
 </div>
 <div id="allow-solution-error" class="section level2">
@@ -126,7 +162,7 @@ my_samples &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span cla
 <a href="#allow-solution-error" class="anchor"></a>Allow solution error</h2>
 <p>In some cases, you may want the student to submit code that intentially throws errors. For example, you want the student to define a function that throws an error if the input arguments are not in the correct format, and next you want the student to call this functoin, hence throwing the error.</p>
 <p>By default, DataCamp’s RBackend does not allow solutions that lead to an error. To suppress this backend error, you can use the following in the pre-exercise-code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">allow_solution_error</span>()</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">allow_solution_error</span>()</a></code></pre></div>
 <p>This tells the backend that the solution code will generate an error when executed.</p>
 </div>
 <div id="blocking-solution-execution" class="section level2">
@@ -166,7 +202,9 @@ ex() %&gt;% override_solution(x = 5) %&gt;% check_object('x') %&gt;% check_equal
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#randomness">Randomness</a></li>
+<li><a href="#success-message">Success message</a></li>
+      <li><a href="#multiple-choice-exercises">Multiple choice exercises</a></li>
+      <li><a href="#randomness">Randomness</a></li>
       <li><a href="#allow-solution-error">Allow solution error</a></li>
       <li><a href="#blocking-solution-execution">Blocking solution execution</a></li>
       </ul>

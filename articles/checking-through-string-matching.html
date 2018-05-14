@@ -114,12 +114,11 @@
 <h2 class="hasAnchor">
 <a href="#example-1-regular-expression" class="anchor"></a>Example 1: regular expression</h2>
 <p>Suppose you want the student to type the sentence “R is Rsome!”, but you want to allow for some small mistakes regarding capitalization and the exclamation mark. The solution looks like this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Write the sentence in quotes</span>
-<span class="st">"R is Rsome!"</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># Write the sentence in quotes</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="st">"R is Rsome!"</span></a></code></pre></div>
 <p>The SCT could look as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ex</span>() %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_code.html">check_code</a></span>(<span class="st">"^</span><span class="ch">\"</span><span class="st">[r|R] is [r|R]some!?</span><span class="ch">\"</span><span class="st">$"</span>,
-                    <span class="dt">not_typed_msg =</span> <span class="st">"Have you correctly written the sentence `R is Rsome!`?"</span>)
-<span class="kw"><a href="../reference/success_msg.html">success_msg</a></span>(<span class="st">"Nice job!"</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">ex</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_code.html">check_code</a></span>(<span class="st">"^</span><span class="ch">\"</span><span class="st">[r|R] is [r|R]some!?</span><span class="ch">\"</span><span class="st">$"</span>,</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">                    <span class="dt">not_typed_msg =</span> <span class="st">"Have you correctly written the sentence `R is Rsome!`?"</span>)</a></code></pre></div>
 <p>All of the following student submission would be accepted by this <code>testwhat</code> function call:</p>
 <ul>
 <li><code>"R is Rsome!"</code></li>
@@ -137,8 +136,8 @@
 <h2 class="hasAnchor">
 <a href="#example-2-exact-matching" class="anchor"></a>Example 2: Exact matching</h2>
 <p>Suppose you want to check whether a student coded a SQL expression correctly:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create the correct SQL expression</span>
-x &lt;-<span class="st"> "SELECT posts FROM tweets WHERE n_char &gt; 10"</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># Create the correct SQL expression</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">x &lt;-<span class="st"> "SELECT posts FROM tweets WHERE n_char &gt; 10"</span></a></code></pre></div>
 <p>The student can solve this in many ways, all of which should be accepted:</p>
 <ul>
 <li><code>x &lt;- "select posts from tweets where n_char &gt; 10"</code></li>
@@ -147,12 +146,11 @@ x &lt;-<span class="st"> "SELECT posts FROM tweets WHERE n_char &gt; 10"</span><
 <li>…</li>
 </ul>
 <p>You can thus write the following SCT. In <code>strings</code> you specify a vector with all options. This time, you have to set <code>fixed = TRUE</code> so you can do exact string matching. Finally, you can chose to override the <code>not_typed_msg</code> to give a custom message if the student didn’t type what you expected.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ex</span>() %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_code.html">check_code</a></span>(<span class="kw">c</span>(<span class="st">"select posts from tweets where n_char &gt; 10"</span>,
-                      <span class="st">"SELECT posts FROM tweets WHERE n_char &gt; 10"</span>,
-                      <span class="st">"SELECT posts from tweets where n_char &gt; 10"</span>),
-                    <span class="dt">fixed =</span> <span class="ot">TRUE</span>,
-                    <span class="dt">not_typed_msg =</span> <span class="st">"Have you correctly coded the SQL query?"</span>)
-<span class="kw"><a href="../reference/success_msg.html">success_msg</a></span>(<span class="st">"Great job!"</span>)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">ex</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_code.html">check_code</a></span>(<span class="kw">c</span>(<span class="st">"select posts from tweets where n_char &gt; 10"</span>,</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">                      <span class="st">"SELECT posts FROM tweets WHERE n_char &gt; 10"</span>,</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">                      <span class="st">"SELECT posts from tweets where n_char &gt; 10"</span>),</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">                    <span class="dt">fixed =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">                    <span class="dt">not_typed_msg =</span> <span class="st">"Have you correctly coded the SQL query?"</span>)</a></code></pre></div>
 <p>However, the above SCT doesn’t really cut it. To be really robust to all different ways of coding this query, you’ll either want to use regular expressions inside <code>test_student_typed()</code> (see example 2) or do a check on the resulting data frame from executing the SQL query (preferable, since than you automatically cover any correct way of doing things).</p>
 </div>
   </div>

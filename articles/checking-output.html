@@ -115,10 +115,10 @@
 <h3 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h3>
 <p>Suppose you want to check whether the student printed out <code>My name is &lt;name here&gt;</code>. A solution could look like this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Print out your name</span>
-<span class="st">"My name is DataCamp"</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># Print out your name</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="st">"My name is DataCamp"</span></a></code></pre></div>
 <p>To allow for different names here, you can use the following SCT:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ex</span>() %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_output.html">check_output</a></span>(<span class="st">"[M|m]y name is [a-zA-Z]+?"</span>, <span class="dt">missing_msg =</span> <span class="st">"Have you printed out your name?"</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">ex</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_output.html">check_output</a></span>(<span class="st">"[M|m]y name is [a-zA-Z]+?"</span>, <span class="dt">missing_msg =</span> <span class="st">"Have you printed out your name?"</span>)</a></code></pre></div>
 <p>The regex allows you to allow both <code>my</code> and <code>My</code>, and to allow any name, as long as its first character is a letter and there’s at least one such character.</p>
 <p><a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html">Click here to learn more about regular expressions in R</a>.</p>
 </div>
@@ -133,10 +133,10 @@
 <h3 class="hasAnchor">
 <a href="#example-1" class="anchor"></a>Example</h3>
 <p>Suppose you want the student to print out the fourth row of the <code>mtcars</code> data frame. The solution would look as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Print out the fourth row of mtcars</span>
-mtcars[<span class="dv">4</span>, ]</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># Print out the fourth row of mtcars</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">mtcars[<span class="dv">4</span>, ]</a></code></pre></div>
 <p>The following SCT would check this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ex</span>() %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_output.html">check_output_expr</a></span>(<span class="st">"mtcars[4, ]"</span>, <span class="dt">missing_msg =</span> <span class="st">"Have you used `[4, ]` to print out the fourth row of `mtcars`?"</span>)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">ex</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_output.html">check_output_expr</a></span>(<span class="st">"mtcars[4, ]"</span>, <span class="dt">missing_msg =</span> <span class="st">"Have you used `[4, ]` to print out the fourth row of `mtcars`?"</span>)</a></code></pre></div>
 <p>You simply pass the expression that would generate the correct printout as an expression, and <code><a href="../reference/check_output.html">check_output_expr()</a></code> takes care of the rest. You can also use a custom <code>missing_msg</code> to give meaningful feedback to the student.</p>
 </div>
 </div>

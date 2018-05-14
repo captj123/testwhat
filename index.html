@@ -107,27 +107,21 @@
 <li>If you want to learn what SCTs are and how they work, visit <a href="https://authoring.datacamp.com/courses/sct.html" class="uri">https://authoring.datacamp.com/courses/sct.html</a>.</li>
 <li>For a complete overview of all functionality inside <code>testwhat</code> and articles about what to use when, consult <a href="https://datacamp.github.io/testwhat" class="uri">https://datacamp.github.io/testwhat</a>.</li>
 </ul>
-<p>For details, questions and suggestions, <script type="text/javascript">
-<!--
-h='&#100;&#x61;&#116;&#x61;&#x63;&#x61;&#x6d;&#112;&#46;&#x63;&#x6f;&#x6d;';a='&#64;';n='&#x63;&#x6f;&#110;&#116;&#x65;&#110;&#116;&#x2d;&#x65;&#110;&#x67;&#x69;&#110;&#x65;&#x65;&#114;&#x69;&#110;&#x67;';e=n+a+h;
-document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x63;&#x6f;&#110;&#116;&#x61;&#x63;&#116;&#32;&#x75;&#x73;'+'<\/'+'a'+'>');
-// -->
-</script></p>
-<noscript>contact us (content-engineering at datacamp dot com)</noscript>.
+<p>For details, questions and suggestions, <a href="mailto:content-engineering@datacamp.com">contact us</a>.</p>
 <div id="development" class="section level2">
 <h2 class="hasAnchor">
 <a href="#development" class="anchor"></a>Development</h2>
 <div id="installation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"devtools"</span>)
-<span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"datacamp/testwhat"</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(<span class="st">"devtools"</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"datacamp/testwhat"</span>)</a></code></pre></div>
 </div>
 <div id="tests" class="section level3">
 <h3 class="hasAnchor">
 <a href="#tests" class="anchor"></a>Tests</h3>
 <p><code>testwhat</code> currently depends on the proprietary <code>RBackend</code> and <code>RCompletion</code> packages to run tests. Tests run automatically on every branch that is updated through travis.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools::<span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/test">test</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/test">test</a></span>()</a></code></pre></div>
 </div>
 <div id="documentation" class="section level3">
 <h3 class="hasAnchor">

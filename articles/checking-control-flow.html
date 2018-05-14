@@ -112,14 +112,15 @@
 <h2 class="hasAnchor">
 <a href="#example-1-for-loop" class="anchor"></a>Example 1: For loop</h2>
 <p>Consider the following solution:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Print out the integers 1 to 10</span>
-for (i in <span class="dv">1</span>:<span class="dv">10</span>) {
-  <span class="kw">print</span>(i)
-}</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># Print out the integers 1 to 10</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) {</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">  <span class="kw">print</span>(i)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">}</a></code></pre></div>
 <p>A suitable SCT for this exercise can be the following:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">forloop &lt;-<span class="st"> </span><span class="kw">ex</span>() %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_control.html">check_for</a></span>(<span class="dt">not_found_msg =</span> <span class="st">"Make sure to code a for loop in the first place!"</span>)
-forloop %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_control.html">check_cond</a></span>() %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_code.html">check_code</a></span>(<span class="st">"in</span><span class="ch">\\</span><span class="st">s*1:10"</span>, <span class="dt">missing_msg =</span> <span class="st">"You can use `i in 1:10` to define your for loop."</span>)
-forloop %&gt;%<span class="st"> </span><span class="kw">check_body</span>() %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_function</a></span>(<span class="st">"print"</span>) %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_arg</a></span>(<span class="st">"x"</span>) %&gt;%<span class="st"> </span><span class="kw">check_equal</span>(<span class="dt">eval =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">forloop &lt;-<span class="st"> </span><span class="kw">ex</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_control.html">check_for</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>{</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="kw"><a href="../reference/check_control.html">check_cond</a></span>(.) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_code.html">check_code</a></span>(<span class="st">"in</span><span class="ch">\\</span><span class="st">s*1:10"</span>, <span class="dt">missing_msg =</span> <span class="st">"You can use `i in 1:10` to define your for loop."</span>)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">  <span class="kw">check_body</span>(.) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_function</a></span>(<span class="st">"print"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_arg</a></span>(<span class="st">"x"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">check_equal</span>(<span class="dt">eval =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">}</a></code></pre></div>
 <ul>
 <li>
 <code><a href="../reference/check_control.html">check_for()</a></code> checks whether students have specified a <code>for</code> loop in their code. If this is the case, it produces a substate, referring to the condition of the for loop and its body.</li>
@@ -130,21 +131,22 @@ forloop %&gt;%<span class="st"> </span><span class="kw">check_body</span>() %&gt
 <h2 class="hasAnchor">
 <a href="#example-2-check-if-else" class="anchor"></a>Example 2: Check if else</h2>
 <p>Consider the following solution:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Predefined value of x</span>
-x &lt;-<span class="st"> </span><span class="ot">TRUE</span>
-
-<span class="co"># Code the if else construct</span>
-if (x) {
-  <span class="kw">print</span>(<span class="st">"x is TRUE!"</span>)
-} else {
-  <span class="kw">print</span>(<span class="st">"x is not TRUE!"</span>)
-}</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># Predefined value of x</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co"># Code the if else construct</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="cf">if</span> (x) {</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">  <span class="kw">print</span>(<span class="st">"x is TRUE!"</span>)</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">  <span class="kw">print</span>(<span class="st">"x is not TRUE!"</span>)</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">}</a></code></pre></div>
 <p>The following SCT checks its correctness:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ex</span>() %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/test_object.html">check_object</a></span>(<span class="st">"x"</span>)
-ifelse &lt;-<span class="st"> </span><span class="kw">ex</span>() %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_control.html">check_if_else</a></span>()
-ifelse %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_control.html">check_cond</a></span>() %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_code.html">check_code</a></span>(<span class="st">"x"</span>)
-ifelse %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_control.html">check_if</a></span>() %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_function</a></span>(<span class="st">"print"</span>) %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_arg</a></span>(<span class="st">"x"</span>) %&gt;%<span class="st"> </span><span class="kw">check_equal</span>()
-ifelse %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_control.html">check_else</a></span>() %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_function</a></span>(<span class="st">"print"</span>) %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_arg</a></span>(<span class="st">"x"</span>) %&gt;%<span class="st"> </span><span class="kw">check_equal</span>()</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">ex</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/test_object.html">check_object</a></span>(<span class="st">"x"</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">ex</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_control.html">check_if_else</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>{</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="kw"><a href="../reference/check_control.html">check_cond</a></span>(.) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_code.html">check_code</a></span>(<span class="st">"x"</span>)</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">  <span class="kw"><a href="../reference/check_control.html">check_if</a></span>(.) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_function</a></span>(<span class="st">"print"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_arg</a></span>(<span class="st">"x"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">check_equal</span>()</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="kw"><a href="../reference/check_control.html">check_else</a></span>(.) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_function</a></span>(<span class="st">"print"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_arg</a></span>(<span class="st">"x"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">check_equal</span>()</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">}</a></code></pre></div>
 <ul>
 <li>
 <code><a href="../reference/check_control.html">check_if_else()</a></code> parses the student code and checks if there is an if-else statement in there.</li>
@@ -155,33 +157,33 @@ ifelse %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/che
 <h3 class="hasAnchor">
 <a href="#example-3-check-if-else-if-else" class="anchor"></a>Example 3: Check if, else if, else</h3>
 <p>It is also possible to use <code>else if</code> in R. How to test this? Well, behind the scenes, R parses the following structure:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (condition1) {
-  expression
-} else if (condition2) {
-  expression
-} else {
-  expression
-}</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="cf">if</span> (condition1) {</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">  expression</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">} <span class="cf">else</span> <span class="cf">if</span> (condition2) {</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">  expression</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">  expression</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">}</a></code></pre></div>
 <p>as if it follows this structure:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (condition1) {
-  expression
-} else {
-  if (condition2) {
-
-  } else {
-
-  }
-}</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="cf">if</span> (condition1) {</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">  expression</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">  <span class="cf">if</span> (condition2) {</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">  }</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9">}</a></code></pre></div>
 <p>If you want to test such a piece of code, you therefore need the following construct:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ex</span>() %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_control.html">check_if_else</a></span>() %&gt;%<span class="st"> </span>{
-  <span class="kw"><a href="../reference/check_control.html">check_cond</a></span>(.) %&gt;%<span class="st"> </span>...
-  <span class="kw"><a href="../reference/check_control.html">check_if</a></span>(.) %&gt;%<span class="st"> </span>...
-  <span class="kw"><a href="../reference/check_control.html">check_else</a></span>(.) %&gt;%<span class="st"> </span><span class="kw"><a href="../reference/check_control.html">check_if_else</a></span>() %&gt;%<span class="st"> </span>{
-    <span class="kw"><a href="../reference/check_control.html">check_cond</a></span>(.) %&gt;%<span class="st"> </span>...
-    <span class="kw"><a href="../reference/check_control.html">check_if</a></span>(.) %&gt;%<span class="st"> </span>...
-    <span class="kw"><a href="../reference/check_control.html">check_else</a></span>(.) %&gt;%<span class="st"> </span>...
-  }
-}</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">ex</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_control.html">check_if_else</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>{</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">  <span class="kw"><a href="../reference/check_control.html">check_cond</a></span>(.) <span class="op">%&gt;%</span><span class="st"> </span>...</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">  <span class="kw"><a href="../reference/check_control.html">check_if</a></span>(.) <span class="op">%&gt;%</span><span class="st"> </span>...</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">  <span class="kw"><a href="../reference/check_control.html">check_else</a></span>(.) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_control.html">check_if_else</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>{</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">    <span class="kw"><a href="../reference/check_control.html">check_cond</a></span>(.) <span class="op">%&gt;%</span><span class="st"> </span>...</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">    <span class="kw"><a href="../reference/check_control.html">check_if</a></span>(.) <span class="op">%&gt;%</span><span class="st"> </span>...</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">    <span class="kw"><a href="../reference/check_control.html">check_else</a></span>(.) <span class="op">%&gt;%</span><span class="st"> </span>...</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">  }</a>
+<a class="sourceLine" id="cb7-9" data-line-number="9">}</a></code></pre></div>
 </div>
 </div>
 <div id="caution" class="section level2">
