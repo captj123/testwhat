@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Test ggplot call — test_ggplot • testwhat</title>
+<title>Test ggplot call — check_ggplot • testwhat</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -28,7 +28,7 @@
 
 
 
-<meta property="og:title" content="Test ggplot call — test_ggplot" />
+<meta property="og:title" content="Test ggplot call — check_ggplot" />
 
 <meta property="og:description" content="Test ggplot call" />
 <meta name="twitter:card" content="summary" />
@@ -128,8 +128,8 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Test ggplot call</h1>
-    <small class="dont-index">Source: <a href='https://github.com/datacamp/testwhat/blob/master/R/test-ggplot.R'><code>R/test-ggplot.R</code></a></small>
-    <div class="hidden name"><code>test_ggplot.Rd</code></div>
+    <small class="dont-index">Source: <a href='https://github.com/datacamp/testwhat/blob/master/R/check-ggplot.R'><code>R/check-ggplot.R</code></a></small>
+    <div class="hidden name"><code>check_ggplot.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -138,7 +138,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>test_ggplot</span>(<span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>all_fail_msg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>check_data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+    <pre class="usage"><span class='fu'>check_ggplot</span>(<span class='no'>state</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>all_fail_msg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>check_data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>data_fail_msg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>check_aes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>aes_fail_msg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>exact_aes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>check_geom</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>geom_fail_msg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>exact_geom</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>check_geom_params</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>check_facet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -151,6 +151,10 @@
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>state</th>
+      <td><p>the state to start from</p></td>
+    </tr>
     <tr>
       <th>index</th>
       <td><p>which call to check</p></td>

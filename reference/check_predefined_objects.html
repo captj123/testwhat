@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Test predefined R objects — test_predefined_objects • testwhat</title>
+<title>Test predefined R objects — check_predefined_objects • testwhat</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -28,15 +28,12 @@
 
 
 
-<meta property="og:title" content="Test predefined R objects — test_predefined_objects" />
+<meta property="og:title" content="Test predefined R objects — check_predefined_objects" />
 
 <meta property="og:description" content="At the start of your SCT, you typically want to check whether some predefined
 variables are still correct. test_predefined_object allows you to
 specify a vector of object names, together with a vector of equivalence
-conditions, evaluation specifications, undefined an incorrect messages. As
-such, test_predefined_objects is a vectorized wrapper around
-check_object with meaningful defeault feedback messages that
-tell the student to not adapt predefined objects and code in the sample code." />
+conditions, evaluation specifications, undefined an incorrect messages." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -134,8 +131,8 @@ tell the student to not adapt predefined objects and code in the sample code." /
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Test predefined R objects</h1>
-    <small class="dont-index">Source: <a href='https://github.com/datacamp/testwhat/blob/master/R/test-predefined-objects.R'><code>R/test-predefined-objects.R</code></a></small>
-    <div class="hidden name"><code>test_predefined_objects.Rd</code></div>
+    <small class="dont-index">Source: <a href='https://github.com/datacamp/testwhat/blob/master/R/check-predefined-objects.R'><code>R/check-predefined-objects.R</code></a></small>
+    <div class="hidden name"><code>check_predefined_objects.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -143,19 +140,20 @@ tell the student to not adapt predefined objects and code in the sample code." /
     <p>At the start of your SCT, you typically want to check whether some predefined
 variables are still correct. <code>test_predefined_object</code> allows you to
 specify a vector of object names, together with a vector of equivalence
-conditions, evaluation specifications, undefined an incorrect messages. As
-such, <code>test_predefined_objects</code> is a vectorized wrapper around
-<code><a href='test_object.html'>check_object</a></code> with meaningful defeault feedback messages that
-tell the student to not adapt predefined objects and code in the sample code.</p>
+conditions, evaluation specifications, undefined an incorrect messages.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>test_predefined_objects</span>(<span class='no'>name</span>, <span class='kw'>eq_condition</span> <span class='kw'>=</span> <span class='st'>"equivalent"</span>, <span class='kw'>eval</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>undefined_msg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>incorrect_msg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>check_predefined_objects</span>(<span class='no'>state</span>, <span class='no'>name</span>, <span class='kw'>eq_condition</span> <span class='kw'>=</span> <span class='st'>"equivalent"</span>,
+  <span class='kw'>eval</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>undefined_msg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>incorrect_msg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>state</th>
+      <td><p>the state to start from</p></td>
+    </tr>
     <tr>
       <th>name</th>
       <td><p>vector of names of the objects to check</p></td>
@@ -187,7 +185,7 @@ the objects' existence or also whether their values match the solution.</p></td>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='co'># Suppose the sample code specifies the variables a, b and c,</span>
 <span class='co'># and you want to check that a, b and c haven't changed.</span>
-<span class='fu'>test_predefined_objects</span>(<span class='fu'>c</span>(<span class='st'>"a"</span>, <span class='st'>"b"</span>, <span class='st'>"c"</span>))
+<span class='fu'>ex</span>() <span class='kw'>%&gt;%</span> <span class='fu'>check_predefined_objects</span>(<span class='fu'>c</span>(<span class='st'>"a"</span>, <span class='st'>"b"</span>, <span class='st'>"c"</span>))
 <span class='co'># }</span><div class='input'>
 </div></pre>
   </div>
