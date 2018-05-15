@@ -58,7 +58,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">testwhat</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">4.3.4</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">4.3.5</span>
       </span>
     </div>
 
@@ -147,7 +147,7 @@
 <span class='fu'>check_cond</span>(<span class='no'>state</span>)
 
 <span class='co'># S3 method for ControlState</span>
-<span class='fu'>check_body</span>(<span class='no'>state</span>, <span class='no'>...</span>)
+<span class='fu'><a href='s3defs.html'>check_body</a></span>(<span class='no'>state</span>, <span class='no'>...</span>)
 
 <span class='fu'>check_if</span>(<span class='no'>state</span>)
 
@@ -210,8 +210,8 @@
 <span class='co'># SCT</span>
 <span class='no'>w</span> <span class='kw'>&lt;-</span> <span class='fu'>check_while</span>(<span class='fl'>1</span>)
 <span class='no'>w</span> <span class='kw'>%&gt;%</span> <span class='fu'>check_cond</span>() <span class='kw'>%&gt;%</span> <span class='fu'><a href='check_code.html'>check_code</a></span>(<span class='fu'>c</span>(<span class='st'>"&lt; 18"</span>, <span class='st'>"18 &gt;"</span>))
-<span class='no'>w</span> <span class='kw'>%&gt;%</span> <span class='fu'>check_body</span>() <span class='kw'>%&gt;%</span> <span class='fu'><a href='check_code.html'>check_code</a></span>(<span class='fu'>c</span>(<span class='st'>"x + 5"</span>, <span class='st'>"5 + x"</span>))
-<span class='no'>w</span> <span class='kw'>%&gt;%</span> <span class='fu'>check_body</span>() <span class='kw'>%&gt;%</span> <span class='fu'><a href='check_function.html'>check_function</a></span>(<span class='st'>"print"</span>) <span class='kw'>%&gt;%</span> <span class='fu'>test_arg</span>(<span class='st'>"x"</span>)
+<span class='no'>w</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='s3defs.html'>check_body</a></span>() <span class='kw'>%&gt;%</span> <span class='fu'><a href='check_code.html'>check_code</a></span>(<span class='fu'>c</span>(<span class='st'>"x + 5"</span>, <span class='st'>"5 + x"</span>))
+<span class='no'>w</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='s3defs.html'>check_body</a></span>() <span class='kw'>%&gt;%</span> <span class='fu'><a href='check_function.html'>check_function</a></span>(<span class='st'>"print"</span>) <span class='kw'>%&gt;%</span> <span class='fu'>test_arg</span>(<span class='st'>"x"</span>)
 
 <span class='co'># Example 3: for loop</span>
 <span class='kw'>for</span>(<span class='no'>i</span> <span class='kw'>in</span> <span class='fl'>1</span>:<span class='fl'>5</span>) {
@@ -224,7 +224,7 @@
 <span class='no'>cond</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='check_code.html'>check_code</a></span>(<span class='st'>"in"</span>)
 <span class='no'>cond</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='check_code.html'>check_code</a></span>(<span class='st'>"1"</span>)
 <span class='no'>cond</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='check_code.html'>check_code</a></span>(<span class='st'>"5"</span>)
-<span class='no'>f</span> <span class='kw'>%&gt;%</span> <span class='fu'>check_body</span>() <span class='kw'>%&gt;%</span> <span class='fu'><a href='check_function.html'>check_function</a></span>(<span class='st'>"print"</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='check_function.html'>check_arg</a></span>(<span class='st'>"x"</span>) <span class='kw'>%&gt;%</span> <span class='fu'>check_equal</span>()
+<span class='no'>f</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='s3defs.html'>check_body</a></span>() <span class='kw'>%&gt;%</span> <span class='fu'><a href='check_function.html'>check_function</a></span>(<span class='st'>"print"</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='check_function.html'>check_arg</a></span>(<span class='st'>"x"</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='s3defs.html'>check_equal</a></span>()
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

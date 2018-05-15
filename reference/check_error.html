@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check whether the student's submission threw an error. — check_error.default • testwhat</title>
+<title>Check whether the student's submission threw an error. — check_error • testwhat</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -28,7 +28,7 @@
 
 
 
-<meta property="og:title" content="Check whether the student's submission threw an error. — check_error.default" />
+<meta property="og:title" content="Check whether the student's submission threw an error. — check_error" />
 
 <meta property="og:description" content="With information gathered from the R Backend, detect whether the student's
 submission generated an error. If this is the case a feedback message will be
@@ -61,7 +61,7 @@ incorrect_msg to add a custom message to this error." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">testwhat</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">4.3.4</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">4.3.5</span>
       </span>
     </div>
 
@@ -132,7 +132,7 @@ incorrect_msg to add a custom message to this error." />
     <div class="page-header">
     <h1>Check whether the student's submission threw an error.</h1>
     <small class="dont-index">Source: <a href='https://github.com/datacamp/testwhat/blob/master/R/check-error.R'><code>R/check-error.R</code></a></small>
-    <div class="hidden name"><code>check_error.default.Rd</code></div>
+    <div class="hidden name"><code>check_error.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -144,7 +144,9 @@ generated that contains the R error in a formatted style. You can use
     
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for default</span>
+    <pre class="usage"><span class='fu'>check_error</span>(<span class='no'>state</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for default</span>
 <span class='fu'>check_error</span>(<span class='no'>state</span>, <span class='kw'>incorrect_msg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -155,13 +157,13 @@ generated that contains the R error in a formatted style. You can use
       <td><p>State to start from (for <code>check_error</code>)</p></td>
     </tr>
     <tr>
+      <th>...</th>
+      <td><p>S3 stuff</p></td>
+    </tr>
+    <tr>
       <th>incorrect_msg</th>
       <td><p>additional message that is appended to the automatically
 generated feedback message.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>S3 stuff</p></td>
     </tr>
     </table>
     

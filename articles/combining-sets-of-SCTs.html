@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">testwhat</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">4.3.4</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">4.3.5</span>
       </span>
     </div>
 
@@ -119,10 +119,10 @@
 <a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># Calculate result</span></a>
 <a class="sourceLine" id="cb1-5" data-line-number="5">result &lt;-<span class="st"> </span><span class="kw">mean</span>(vec)</a></code></pre></div>
 <p>You want the SCT to pass when the student manages to store the correct value in the object <code>result</code>. How <code>result</code> was calculated, does not matter to you: as long as <code>result</code> is correct, the SCT should accept the submission. If something <code>result</code> is not correct, you want to dig a little deeper and see if the student used the <code>mean()</code> function correctly. The following SCT will do just that:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="../reference/check_logic.html">check_correct</a></span>(<span class="kw">ex</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/test_object.html">check_object</a></span>(<span class="st">"result"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">check_equal</span>(),</a>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="../reference/check_logic.html">check_correct</a></span>(<span class="kw">ex</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/test_object.html">check_object</a></span>(<span class="st">"result"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/s3defs.html">check_equal</a></span>(),</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">              {</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">                <span class="kw">ex</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">check_error</span>()</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">                <span class="kw">ex</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_function</a></span>(<span class="st">"mean"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_arg</a></span>(<span class="st">"x"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">check_equal</span>()</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">                <span class="kw">ex</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_error.html">check_error</a></span>()</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">                <span class="kw">ex</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_function</a></span>(<span class="st">"mean"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/check_function.html">check_arg</a></span>(<span class="st">"x"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/s3defs.html">check_equal</a></span>()</a>
 <a class="sourceLine" id="cb2-5" data-line-number="5">              })</a></code></pre></div>
 <p>Notice that it’s perfectly possible to specify more than one SCT function call in the arguments as the second sub-SCT shows.</p>
 <p>Let’s go over what happens when the student submits different versions of the fifth line of code in the solution:</p>
